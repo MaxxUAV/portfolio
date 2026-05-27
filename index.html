@@ -7,939 +7,245 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --blue:    #30849B;
-  --gold:    #FFC000;
-  --dark:    #1a1a1a;
-  --mid:     #5a5a5a;
-  --light:   #9a9a9a;
-  --bg:      #FAFAF8;
-  --bg2:     #F2F0EC;
-  --line:    #E0DDD8;
-  --white:   #ffffff;
+  --blue:#30849B; --gold:#FFC000; --dark:#1a1a1a; --mid:#5a5a5a;
+  --light:#9a9a9a; --bg:#FAFAF8; --bg2:#F2F0EC; --line:#E0DDD8; --white:#ffffff;
 }
-
 html { scroll-behavior: smooth; }
+body { background:var(--bg); color:var(--dark); font-family:'DM Sans',sans-serif; font-weight:300; overflow-x:hidden; }
+h1,h2,h3,.serif { font-family:'Cormorant Garamond',serif; }
 
-body {
-  background: var(--bg);
-  color: var(--dark);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  overflow-x: hidden;
-}
-
-/* ─── TYPOGRAPHY ─── */
-h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; }
-
-/* ─── NAV ─── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 200;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 22px 56px;
-  background: rgba(250,250,248,0.92);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-}
-
-.nav-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-weight: 400;
-  color: var(--dark);
-  text-decoration: none;
-  letter-spacing: 0.04em;
-}
-.nav-name em { color: var(--blue); font-style: italic; }
-
-.nav-links { display: flex; gap: 36px; list-style: none; }
-.nav-links a {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--mid);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--blue); }
-
-.nav-cta {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--white);
-  background: var(--blue);
-  padding: 10px 22px;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-.nav-cta:hover { background: var(--dark); }
-
-/* ─── HERO ─── */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding-top: 80px;
-}
-
-.hero-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 56px 80px 56px;
-  border-right: 1px solid var(--line);
-}
-
-.hero-kicker {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 28px;
+/* ── LANG SWITCH ── */
+.lang-switch {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 4px;
+  background: var(--bg2);
+  border: 1.5px solid var(--line);
+  border-radius: 40px;
+  padding: 4px 6px;
+  margin-left: 20px;
 }
-.hero-kicker::before {
-  content: '';
-  display: block;
-  width: 32px; height: 1px;
-  background: var(--gold);
-}
-
-.hero h1 {
-  font-size: clamp(52px, 6vw, 84px);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  color: var(--dark);
-  margin-bottom: 6px;
-}
-
-.hero h1 em {
-  color: var(--blue);
-  font-style: italic;
-}
-
-.hero-title-line2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(16px, 2vw, 22px);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--light);
-  margin-bottom: 40px;
-  letter-spacing: 0.04em;
-}
-
-.hero-desc {
-  font-size: 20px;
-  line-height: 1.85;
-  color: var(--mid);
-  max-width: 420px;
-  margin-bottom: 48px;
-}
-
-.hero-actions { display: flex; gap: 16px; align-items: center; }
-
-.btn-main {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--white);
-  background: var(--blue);
-  padding: 14px 32px;
-  text-decoration: none;
-  transition: all 0.2s;
-  border: 1px solid var(--blue);
-}
-.btn-main:hover { background: var(--dark); border-color: var(--dark); }
-
-.btn-ghost {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--dark);
+.lang-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 14px;
+  border-radius: 32px;
+  border: none;
   background: transparent;
-  padding: 14px 32px;
-  text-decoration: none;
-  transition: all 0.2s;
-  border: 1px solid var(--line);
-}
-.btn-ghost:hover { border-color: var(--dark); }
-
-/* Hero right — photo mosaic */
-.hero-right {
-  position: relative;
-  overflow: hidden;
-  background: var(--bg2);
-}
-
-.hero-mosaic {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-  height: 100%;
-  gap: 2px;
-}
-
-.mosaic-cell {
-  overflow: hidden;
-  position: relative;
-  background: var(--bg2);
-}
-
-.mosaic-cell img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-  filter: saturate(0.9);
-}
-
-.mosaic-cell:hover img { transform: scale(1.05); }
-
-.mosaic-cell.tall {
-  grid-row: 1 / 3;
-}
-
-/* Status pill */
-.hero-status {
-  position: absolute;
-  bottom: 32px; left: 56px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  padding: 10px 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-}
-
-.status-dot {
-  width: 7px; height: 7px;
-  background: #4CAF50;
-  border-radius: 50%;
-  animation: blink 2.5s infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-.status-text {
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--mid);
-}
-.status-text strong { color: var(--dark); }
-
-/* Stats row */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.stat-item {
-  padding: 36px 40px;
-  border-right: 1px solid var(--line);
-}
-.stat-item:last-child { border-right: none; }
-
-.stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 55px;
-  font-weight: 300;
-  color: var(--blue);
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.stat-num span { font-size: 31px; color: var(--gold); }
-
-.stat-label {
-  font-size: 14px;
-  font-weight: 400;
   color: var(--light);
-  letter-spacing: 0.08em;
-  line-height: 1.5;
-  text-transform: uppercase;
+  transition: all 0.22s;
 }
-
-/* ─── SECTION COMMONS ─── */
-.section-label {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.section-label::before {
-  content: '';
-  display: block;
-  width: 24px; height: 1px;
-  background: var(--gold);
-}
-
-.section-heading {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(36px, 4vw, 52px);
-  font-weight: 300;
-  line-height: 1.1;
-  color: var(--dark);
-  margin-bottom: 48px;
-}
-.section-heading em { color: var(--blue); font-style: italic; }
-
-/* ─── PROJECTS (GEOKALI) ─── */
-.projects-section {
-  padding: 100px 56px;
-  background: var(--white);
-}
-
-.projects-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: end;
-  margin-bottom: 64px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 48px;
-}
-
-.projects-intro {
-  font-size: 20px;
-  line-height: 1.9;
-  color: var(--mid);
-}
-
-.geokali-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--blue);
-  border: 1px solid var(--blue);
-  padding: 7px 16px;
-  margin-bottom: 20px;
-}
-.geokali-tag::before {
-  content: '';
-  width: 6px; height: 6px;
+.lang-btn .flag { font-size: 18px; line-height: 1; }
+.lang-btn:hover { color: var(--dark); }
+.lang-btn.active {
   background: var(--blue);
-  border-radius: 50%;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-
-.project-card {
-  position: relative;
-  overflow: hidden;
-  background: var(--bg2);
-  aspect-ratio: 4/3;
-  cursor: pointer;
-}
-
-.project-card img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s ease, filter 0.4s;
-  filter: saturate(0.85);
-}
-
-.project-card:hover img {
-  transform: scale(1.04);
-  filter: saturate(1);
-}
-
-.project-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.1) 55%, transparent 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 36px;
-  transition: background 0.4s;
-}
-
-.project-card:hover .project-overlay {
-  background: linear-gradient(to top, rgba(48,132,155,0.85) 0%, rgba(48,132,155,0.2) 50%, transparent 100%);
-}
-
-.project-cat {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 10px;
-}
-
-.project-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 34px;
-  font-weight: 400;
-  color: white;
-  line-height: 1.2;
-  margin-bottom: 14px;
-}
-
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 16px;
-}
-
-.project-tag {
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  padding: 3px 10px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.8);
-}
-
-.project-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--white);
-  text-decoration: none;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.3s, transform 0.3s;
+  box-shadow: 0 2px 10px rgba(48,132,155,0.25);
 }
-.project-card:hover .project-link {
-  opacity: 1;
-  transform: translateY(0);
-}
-.project-link::after {
-  content: '→';
-  transition: transform 0.2s;
-}
-.project-link:hover::after { transform: translateX(4px); }
-
-/* Placeholder for missing images */
-.project-placeholder {
-  width: 100%; height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg2);
-}
-.placeholder-inner {
-  text-align: center;
-  opacity: 0.4;
-}
-.placeholder-inner svg { width: 48px; height: 48px; margin-bottom: 12px; }
-.placeholder-inner p { font-size: 16px; color: var(--mid); }
-
-/* ─── EXPERIENCE ─── */
-.experience-section {
-  padding: 100px 56px;
-  background: var(--bg);
-}
-
-.exp-layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 0;
-  border: 1px solid var(--line);
-}
-
-.exp-sidebar {
-  border-right: 1px solid var(--line);
-  padding: 0;
-}
-
-.exp-tab {
-  padding: 24px 28px;
-  border-bottom: 1px solid var(--line);
-  cursor: pointer;
-  transition: all 0.2s;
-  border-left: 3px solid transparent;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.exp-tab:hover { background: var(--bg2); }
-
-.exp-tab.active {
-  background: var(--white);
-  border-left-color: var(--blue);
-}
-.exp-tab.active .tab-company { color: var(--blue); }
-
-.tab-company {
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--dark);
-  transition: color 0.2s;
-}
-
-.tab-role {
-  font-size: 14px;
-  color: var(--light);
-  line-height: 1.4;
-}
-
-.tab-period {
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  color: var(--light);
-  margin-top: 2px;
-}
-
-.exp-detail {
-  padding: 48px 52px;
-  display: none;
-  background: var(--white);
-}
-
-.exp-detail.active { display: block; }
-
-.exp-detail-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 32px;
-  padding-bottom: 28px;
-  border-bottom: 1px solid var(--line);
-}
-
-.exp-detail-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 36px;
-  font-weight: 300;
-  color: var(--dark);
-  line-height: 1.2;
-  margin-bottom: 8px;
-}
-
-.exp-detail-company {
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--blue);
-}
-
-.exp-detail-period {
-  text-align: right;
-}
-
-.exp-detail-years {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 47px;
-  font-weight: 300;
-  color: var(--gold);
-  line-height: 1;
-}
-
-.exp-detail-dates {
-  font-size: 14px;
-  color: var(--light);
-  margin-top: 6px;
-  letter-spacing: 0.08em;
-}
-
-.exp-detail-body {
-  font-size: 18px;
-  line-height: 1.95;
-  color: var(--mid);
-}
-
-.exp-detail-body p { margin-bottom: 16px; }
-
-.exp-detail-body strong {
-  color: var(--dark);
-  font-weight: 500;
-}
-
-.exp-detail-body ul {
-  margin: 12px 0 20px 0;
-  padding-left: 0;
-  list-style: none;
-}
-
-.exp-detail-body li {
-  padding: 6px 0 6px 20px;
-  position: relative;
-  border-bottom: 1px solid var(--line);
-  font-size: 17px;
-}
-
-.exp-detail-body li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--gold);
-  font-weight: 400;
-}
-
-.detail-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
-}
-
-.detail-tag {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 5px 14px;
-  border: 1px solid var(--line);
-  color: var(--mid);
-  transition: all 0.2s;
-}
-
-.detail-tag.primary {
-  border-color: var(--blue);
-  color: var(--blue);
-  background: rgba(48,132,155,0.05);
-}
-
-/* ─── SKILLS ─── */
-.skills-section {
-  padding: 100px 56px;
-  background: var(--dark);
-  color: white;
-}
-
-.skills-section .section-label { color: var(--gold); }
-.skills-section .section-label::before { background: var(--gold); }
-.skills-section .section-heading { color: white; }
-.skills-section .section-heading em { color: var(--blue); }
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.skill-group {
-  background: var(--dark);
-  padding: 40px 36px;
-  transition: background 0.3s;
-}
-
-.skill-group:hover {
-  background: rgba(48,132,155,0.12);
-}
-
-.skill-group-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--blue);
-  margin-bottom: 28px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.skill-row {
-  margin-bottom: 18px;
-}
-
-.skill-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 7px;
-}
-
-.skill-name-txt {
-  font-size: 17px;
-  color: rgba(255,255,255,0.75);
-}
-
-.skill-pct {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 21px;
-  font-weight: 300;
-  color: var(--gold);
-}
-
-.skill-track {
-  height: 1px;
-  background: rgba(255,255,255,0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.skill-fill {
-  height: 100%;
-  background: linear-gradient(to right, var(--blue), var(--gold));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.skill-fill.animate { transform: scaleX(1); }
-
-/* ─── PUBLICATIONS ─── */
-.publications-section {
-  padding: 100px 56px;
-  background: var(--bg2);
-}
-
-.pub-list { display: flex; flex-direction: column; gap: 0; }
-
-.pub-item {
-  display: grid;
-  grid-template-columns: 64px 1fr auto;
-  align-items: center;
-  gap: 28px;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--line);
-  transition: all 0.2s;
-}
-
-.pub-item:hover { padding-left: 12px; }
-
-.pub-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 42px;
-  font-weight: 300;
-  color: var(--line);
-  line-height: 1;
-}
-
-.pub-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 23px;
-  font-weight: 400;
-  font-style: italic;
-  color: var(--dark);
-  line-height: 1.4;
-}
-
-.pub-type {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--white);
-  padding: 5px 12px;
-  background: var(--blue);
-  white-space: nowrap;
-}
-
-.pub-type.gold { background: var(--gold); color: var(--dark); }
-
-/* ─── EDUCATION ─── */
-.education-section {
-  padding: 100px 56px;
-  background: var(--white);
-}
-
-.edu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-}
-
-.edu-card {
-  background: var(--bg2);
-  padding: 40px 36px;
-  border: 1px solid var(--line);
-  transition: all 0.3s;
-}
-
-.edu-card:hover {
-  border-color: var(--blue);
-  transform: translateY(-4px);
-}
-
-.edu-flag {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.edu-school {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 400;
-  color: var(--dark);
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-
-.edu-degree {
-  font-size: 16px;
-  color: var(--mid);
-  line-height: 1.5;
-  margin-bottom: 16px;
-}
-
-.edu-year {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 36px;
-  font-weight: 300;
-  color: var(--gold);
-}
-
-/* ─── CONTACT ─── */
-.contact-section {
-  padding: 100px 56px;
-  background: var(--bg);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border-top: 1px solid var(--line);
-}
-
-.contact-left {
-  padding-right: 80px;
-  border-right: 1px solid var(--line);
-}
-
-.contact-left p {
-  font-size: 20px;
-  line-height: 1.85;
-  color: var(--mid);
-  margin-bottom: 40px;
-}
-
-.contact-right {
-  padding-left: 80px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  justify-content: center;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--line);
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.contact-item:hover { padding-left: 8px; }
-
-.contact-item:first-child { border-top: 1px solid var(--line); }
-
-.contact-icon {
-  width: 40px; height: 40px;
-  border: 1px solid var(--line);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 21px;
+.lang-divider {
+  width: 1px; height: 18px;
+  background: var(--line);
   flex-shrink: 0;
-  transition: all 0.2s;
 }
 
-.contact-item:hover .contact-icon {
-  background: var(--blue);
-  border-color: var(--blue);
-  filter: brightness(0) invert(1);
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:22px 56px;
+  background:rgba(250,250,248,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
 }
+.nav-left { display:flex; align-items:center; gap:48px; }
+.nav-name { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:var(--dark); text-decoration:none; letter-spacing:0.04em; }
+.nav-name em { color:var(--blue); font-style:italic; }
+.nav-links { display:flex; gap:36px; list-style:none; }
+.nav-links a { font-size:14px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--mid); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover { color:var(--blue); }
+.nav-right { display:flex; align-items:center; gap:16px; }
+.nav-cta { font-size:14px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--white); background:var(--blue); padding:10px 22px; text-decoration:none; transition:background 0.2s; }
+.nav-cta:hover { background:var(--dark); }
 
-.contact-info-type {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--light);
-  margin-bottom: 4px;
-}
+/* ── HERO ── */
+.hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; padding-top:80px; }
+.hero-left { display:flex; flex-direction:column; justify-content:center; padding:80px 56px; border-right:1px solid var(--line); }
+.hero-kicker { font-size:13px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--blue); margin-bottom:28px; display:flex; align-items:center; gap:14px; }
+.hero-kicker::before { content:''; display:block; width:32px; height:1px; background:var(--gold); }
+.hero h1 { font-size:clamp(52px,6vw,84px); font-weight:300; line-height:1; letter-spacing:-0.01em; color:var(--dark); margin-bottom:6px; }
+.hero h1 em { color:var(--blue); font-style:italic; }
+.hero-title-line2 { font-family:'Cormorant Garamond',serif; font-size:clamp(16px,2vw,22px); font-weight:300; font-style:italic; color:var(--light); margin-bottom:40px; letter-spacing:0.04em; }
+.hero-desc { font-size:20px; line-height:1.85; color:var(--mid); max-width:420px; margin-bottom:48px; }
+.hero-actions { display:flex; gap:16px; align-items:center; }
+.btn-main { font-size:14px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--white); background:var(--blue); padding:14px 32px; text-decoration:none; transition:all 0.2s; border:1px solid var(--blue); }
+.btn-main:hover { background:var(--dark); border-color:var(--dark); }
+.btn-ghost { font-size:14px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--dark); background:transparent; padding:14px 32px; text-decoration:none; transition:all 0.2s; border:1px solid var(--line); }
+.btn-ghost:hover { border-color:var(--dark); }
+.hero-right { position:relative; overflow:hidden; background:var(--bg2); }
+.hero-mosaic { display:grid; grid-template-rows:1fr 1fr; grid-template-columns:1fr 1fr; height:100%; gap:2px; }
+.mosaic-cell { overflow:hidden; position:relative; background:var(--bg2); }
+.mosaic-cell img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s ease; filter:saturate(0.9); }
+.mosaic-cell:hover img { transform:scale(1.05); }
+.mosaic-cell.tall { grid-row:1/3; }
+.hero-status { position:absolute; bottom:32px; left:56px; display:flex; align-items:center; gap:10px; background:var(--white); border:1px solid var(--line); padding:10px 18px; box-shadow:0 4px 24px rgba(0,0,0,0.06); }
+.status-dot { width:7px; height:7px; background:#4CAF50; border-radius:50%; animation:blink 2.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.status-text { font-size:14px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--mid); }
+.status-text strong { color:var(--dark); }
 
-.contact-info-val {
-  font-size: 18px;
-  color: var(--dark);
-  font-weight: 400;
-}
+/* ── STATS ── */
+.stats-row { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.stat-item { padding:36px 40px; border-right:1px solid var(--line); }
+.stat-item:last-child { border-right:none; }
+.stat-num { font-family:'Cormorant Garamond',serif; font-size:55px; font-weight:300; color:var(--blue); line-height:1; margin-bottom:8px; }
+.stat-num span { font-size:31px; color:var(--gold); }
+.stat-label { font-size:14px; font-weight:400; color:var(--light); letter-spacing:0.08em; line-height:1.5; text-transform:uppercase; }
 
-.contact-arrow {
-  margin-left: auto;
-  font-size: 23px;
-  color: var(--blue);
-  transition: transform 0.2s;
-}
-.contact-item:hover .contact-arrow { transform: translateX(6px); }
+/* ── SECTION COMMONS ── */
+.section-label { font-size:13px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.section-label::before { content:''; display:block; width:24px; height:1px; background:var(--gold); }
+.section-heading { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4vw,52px); font-weight:300; line-height:1.1; color:var(--dark); margin-bottom:48px; }
+.section-heading em { color:var(--blue); font-style:italic; }
 
-/* ─── FOOTER ─── */
-footer {
-  padding: 28px 56px;
-  background: var(--dark);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+/* ── PROJECTS ── */
+.projects-section { padding:100px 56px; background:var(--white); }
+.projects-header { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:64px; border-bottom:1px solid var(--line); padding-bottom:48px; }
+.projects-intro { font-size:20px; line-height:1.9; color:var(--mid); }
+.geokali-tag { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--blue); border:1px solid var(--blue); padding:7px 16px; margin-bottom:20px; }
+.geokali-tag::before { content:''; width:6px; height:6px; background:var(--blue); border-radius:50%; }
+.projects-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+.project-card { position:relative; overflow:hidden; background:var(--bg2); aspect-ratio:4/3; cursor:pointer; }
+.project-card img { width:100%; height:100%; object-fit:cover; transition:transform 0.7s ease,filter 0.4s; filter:saturate(0.85); }
+.project-card:hover img { transform:scale(1.04); filter:saturate(1); }
+.project-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(26,26,26,0.82) 0%,rgba(26,26,26,0.1) 55%,transparent 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:36px; transition:background 0.4s; }
+.project-card:hover .project-overlay { background:linear-gradient(to top,rgba(48,132,155,0.85) 0%,rgba(48,132,155,0.2) 50%,transparent 100%); }
+.project-cat { font-size:13px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.project-title { font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:400; color:white; line-height:1.2; margin-bottom:14px; }
+.project-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+.project-tag { font-size:13px; letter-spacing:0.08em; padding:3px 10px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.8); }
+.project-link { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--white); text-decoration:none; opacity:0; transform:translateY(8px); transition:opacity 0.3s,transform 0.3s; }
+.project-card:hover .project-link { opacity:1; transform:translateY(0); }
+.project-link::after { content:'→'; transition:transform 0.2s; }
+.project-link:hover::after { transform:translateX(4px); }
+.project-placeholder { width:100%; height:100%; }
 
-footer p {
-  font-size: 14px;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.08em;
-}
+/* ── EXPERIENCE ── */
+.experience-section { padding:100px 56px; background:var(--bg); }
+.exp-layout { display:grid; grid-template-columns:280px 1fr; gap:0; border:1px solid var(--line); }
+.exp-sidebar { border-right:1px solid var(--line); padding:0; }
+.exp-tab { padding:24px 28px; border-bottom:1px solid var(--line); cursor:pointer; transition:all 0.2s; border-left:3px solid transparent; display:flex; flex-direction:column; gap:6px; }
+.exp-tab:hover { background:var(--bg2); }
+.exp-tab.active { background:var(--white); border-left-color:var(--blue); }
+.exp-tab.active .tab-company { color:var(--blue); }
+.tab-company { font-size:17px; font-weight:500; color:var(--dark); transition:color 0.2s; }
+.tab-role { font-size:14px; color:var(--light); line-height:1.4; }
+.tab-period { font-size:13px; letter-spacing:0.08em; color:var(--light); margin-top:2px; }
+.exp-detail { padding:48px 52px; display:none; background:var(--white); }
+.exp-detail.active { display:block; }
+.exp-detail-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:32px; padding-bottom:28px; border-bottom:1px solid var(--line); }
+.exp-detail-title { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--dark); line-height:1.2; margin-bottom:8px; }
+.exp-detail-company { font-size:17px; font-weight:500; color:var(--blue); }
+.exp-detail-period { text-align:right; }
+.exp-detail-years { font-family:'Cormorant Garamond',serif; font-size:47px; font-weight:300; color:var(--gold); line-height:1; }
+.exp-detail-dates { font-size:14px; color:var(--light); margin-top:6px; letter-spacing:0.08em; }
+.exp-detail-body { font-size:18px; line-height:1.95; color:var(--mid); }
+.exp-detail-body p { margin-bottom:16px; }
+.exp-detail-body strong { color:var(--dark); font-weight:500; }
+.exp-detail-body ul { margin:12px 0 20px 0; padding-left:0; list-style:none; }
+.exp-detail-body li { padding:6px 0 6px 20px; position:relative; border-bottom:1px solid var(--line); font-size:17px; }
+.exp-detail-body li::before { content:'—'; position:absolute; left:0; color:var(--gold); font-weight:400; }
+.detail-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; padding-top:24px; border-top:1px solid var(--line); }
+.detail-tag { font-size:13px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; padding:5px 14px; border:1px solid var(--line); color:var(--mid); transition:all 0.2s; }
+.detail-tag.primary { border-color:var(--blue); color:var(--blue); background:rgba(48,132,155,0.05); }
 
-footer a {
-  font-size: 14px;
-  color: var(--blue);
-  text-decoration: none;
-  letter-spacing: 0.1em;
-}
+/* ── SKILLS ── */
+.skills-section { padding:100px 56px; background:var(--dark); color:white; }
+.skills-section .section-label { color:var(--gold); }
+.skills-section .section-label::before { background:var(--gold); }
+.skills-section .section-heading { color:white; }
+.skills-section .section-heading em { color:var(--blue); }
+.skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.08); }
+.skill-group { background:var(--dark); padding:40px 36px; transition:background 0.3s; }
+.skill-group:hover { background:rgba(48,132,155,0.12); }
+.skill-group-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; font-style:italic; color:var(--blue); margin-bottom:28px; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.skill-row { margin-bottom:18px; }
+.skill-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; }
+.skill-name-txt { font-size:17px; color:rgba(255,255,255,0.75); }
+.skill-pct { font-family:'Cormorant Garamond',serif; font-size:21px; font-weight:300; color:var(--gold); }
+.skill-track { height:1px; background:rgba(255,255,255,0.1); position:relative; overflow:hidden; }
+.skill-fill { height:100%; background:linear-gradient(to right,var(--blue),var(--gold)); transform:scaleX(0); transform-origin:left; transition:transform 1.2s cubic-bezier(0.4,0,0.2,1); }
+.skill-fill.animate { transform:scaleX(1); }
 
-/* ─── ANIMATIONS ─── */
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible { opacity: 1; transform: none; }
+/* ── PUBLICATIONS ── */
+.publications-section { padding:100px 56px; background:var(--bg2); }
+.pub-list { display:flex; flex-direction:column; gap:0; }
+.pub-item { display:grid; grid-template-columns:64px 1fr auto; align-items:center; gap:28px; padding:28px 0; border-bottom:1px solid var(--line); transition:all 0.2s; }
+.pub-item:hover { padding-left:12px; }
+.pub-num { font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:300; color:var(--line); line-height:1; }
+.pub-title { font-family:'Cormorant Garamond',serif; font-size:23px; font-weight:400; font-style:italic; color:var(--dark); line-height:1.4; }
+.pub-type { font-size:13px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--white); padding:5px 12px; background:var(--blue); white-space:nowrap; }
+.pub-type.gold { background:var(--gold); color:var(--dark); }
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 900px) {
-  nav { padding: 18px 24px; }
-  .nav-links, .nav-cta { display: none; }
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 100px 24px 48px; border-right: none; border-bottom: 1px solid var(--line); }
-  .hero-right { min-height: 320px; }
-  .stats-row { grid-template-columns: 1fr 1fr; }
-  .stat-item:nth-child(2) { border-right: none; }
-  .projects-section, .experience-section, .skills-section, .publications-section, .education-section { padding: 60px 24px; }
-  .projects-header { grid-template-columns: 1fr; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .exp-layout { grid-template-columns: 1fr; }
-  .exp-sidebar { border-right: none; border-bottom: 1px solid var(--line); }
-  .skills-grid { grid-template-columns: 1fr; }
-  .edu-grid { grid-template-columns: 1fr; }
-  .contact-section { grid-template-columns: 1fr; padding: 60px 24px; }
-  .contact-left { padding-right: 0; border-right: none; border-bottom: 1px solid var(--line); padding-bottom: 48px; margin-bottom: 48px; }
-  .contact-right { padding-left: 0; }
-  footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+/* ── EDUCATION ── */
+.education-section { padding:100px 56px; background:var(--white); }
+.edu-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+.edu-card { background:var(--bg2); padding:40px 36px; border:1px solid var(--line); transition:all 0.3s; }
+.edu-card:hover { border-color:var(--blue); transform:translateY(-4px); }
+.edu-flag { font-size:28px; margin-bottom:20px; }
+.edu-school { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; color:var(--dark); margin-bottom:8px; line-height:1.3; }
+.edu-degree { font-size:16px; color:var(--mid); line-height:1.5; margin-bottom:16px; }
+.edu-year { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--gold); }
+
+/* ── CONTACT ── */
+.contact-section { padding:100px 56px; background:var(--bg); display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--line); }
+.contact-left { padding-right:80px; border-right:1px solid var(--line); }
+.contact-left p { font-size:20px; line-height:1.85; color:var(--mid); margin-bottom:40px; }
+.contact-right { padding-left:80px; display:flex; flex-direction:column; gap:0; justify-content:center; }
+.contact-item { display:flex; align-items:center; gap:20px; padding:22px 0; border-bottom:1px solid var(--line); text-decoration:none; transition:all 0.2s; }
+.contact-item:hover { padding-left:8px; }
+.contact-item:first-child { border-top:1px solid var(--line); }
+.contact-icon { width:40px; height:40px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; transition:all 0.2s; }
+.contact-item:hover .contact-icon { background:var(--blue); border-color:var(--blue); filter:brightness(0) invert(1); }
+.contact-info-type { font-size:13px; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--light); margin-bottom:4px; }
+.contact-info-val { font-size:18px; color:var(--dark); font-weight:400; }
+.contact-arrow { margin-left:auto; font-size:18px; color:var(--blue); transition:transform 0.2s; }
+.contact-item:hover .contact-arrow { transform:translateX(6px); }
+
+/* ── FOOTER ── */
+footer { padding:28px 56px; background:var(--dark); display:flex; justify-content:space-between; align-items:center; }
+footer p { font-size:14px; color:rgba(255,255,255,0.3); letter-spacing:0.08em; }
+footer a { font-size:14px; color:var(--blue); text-decoration:none; letter-spacing:0.1em; }
+
+/* ── ANIMATIONS ── */
+.reveal { opacity:0; transform:translateY(32px); transition:opacity 0.7s ease,transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:none; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav { padding:18px 24px; }
+  .nav-links { display:none; }
+  .hero { grid-template-columns:1fr; min-height:auto; }
+  .hero-left { padding:100px 24px 48px; border-right:none; border-bottom:1px solid var(--line); }
+  .hero-right { min-height:320px; }
+  .stats-row { grid-template-columns:1fr 1fr; }
+  .stat-item:nth-child(2) { border-right:none; }
+  .projects-section,.experience-section,.skills-section,.publications-section,.education-section { padding:60px 24px; }
+  .projects-header { grid-template-columns:1fr; }
+  .projects-grid { grid-template-columns:1fr; }
+  .exp-layout { grid-template-columns:1fr; }
+  .exp-sidebar { border-right:none; border-bottom:1px solid var(--line); }
+  .skills-grid { grid-template-columns:1fr; }
+  .edu-grid { grid-template-columns:1fr; }
+  .contact-section { grid-template-columns:1fr; padding:60px 24px; }
+  .contact-left { padding-right:0; border-right:none; border-bottom:1px solid var(--line); padding-bottom:48px; margin-bottom:48px; }
+  .contact-right { padding-left:0; }
+  footer { padding:24px; flex-direction:column; gap:8px; text-align:center; }
+  .lang-switch { margin-left:0; }
 }
 </style>
 </head>
@@ -947,451 +253,231 @@ footer a {
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-name">Maxime <em>Lafleur</em></a>
-  <ul class="nav-links">
-    <li><a href="#projets">Projets</a></li>
-    <li><a href="#experience">Parcours</a></li>
-    <li><a href="#skills">Compétences</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="https://www.linkedin.com/in/maximelafleuruav/" target="_blank" class="nav-cta">LinkedIn →</a>
+  <div class="nav-left">
+    <a href="#" class="nav-name">Maxime <em>Lafleur</em></a>
+    <ul class="nav-links">
+      <li><a href="#projets" data-fr="Projets" data-en="Projects">Projets</a></li>
+      <li><a href="#experience" data-fr="Parcours" data-en="Experience">Parcours</a></li>
+      <li><a href="#skills" data-fr="Compétences" data-en="Skills">Compétences</a></li>
+      <li><a href="#publications" data-fr="Publications" data-en="Publications">Publications</a></li>
+      <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <a href="https://www.linkedin.com/in/maximelafleuruav/" target="_blank" class="nav-cta" data-fr="LinkedIn →" data-en="LinkedIn →">LinkedIn →</a>
+    <div class="lang-switch">
+      <button class="lang-btn active" id="btn-fr" onclick="setLang('fr')">
+        <span class="flag">🇫🇷</span> FR
+      </button>
+      <div class="lang-divider"></div>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">
+        <span class="flag">🇬🇧</span> EN
+      </button>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-left">
-    <div class="hero-kicker">Ingénieur 3D Patrimoine · UAV · LiDAR</div>
+    <div class="hero-kicker" data-fr="Ingénieur 3D Patrimoine · UAV · LiDAR" data-en="3D Heritage Engineer · UAV · LiDAR">Ingénieur 3D Patrimoine · UAV · LiDAR</div>
     <h1>Maxime<br><em>Lafleur</em></h1>
-    <div class="hero-title-line2">Photogrammètre · Lasergrammètre · Développeur</div>
-    <p class="hero-desc">
-      Spécialiste en acquisition et traitement de données 3D géospatiales — patrimoine culturel, génie civil, R&D. 
-      Plus de 10 ans à l'intersection du terrain, du hardware et du logiciel, 
-      de l'Antarctique aux cathédrales françaises.
+    <div class="hero-title-line2" data-fr="Photogrammètre · Lasergrammètre · Développeur" data-en="Photogrammetrist · Lasergrammetrist · Developer">Photogrammètre · Lasergrammètre · Développeur</div>
+    <p class="hero-desc" data-fr="Spécialiste en acquisition et traitement de données 3D géospatiales — patrimoine culturel, génie civil, R&D. Plus de 10 ans à l'intersection du terrain, du hardware et du logiciel, de l'Antarctique aux cathédrales françaises." data-en="Specialist in 3D geospatial data acquisition and processing — cultural heritage, civil engineering, R&D. Over 10 years at the crossroads of fieldwork, hardware and software, from Antarctica to French cathedrals.">
+      Spécialiste en acquisition et traitement de données 3D géospatiales — patrimoine culturel, génie civil, R&D. Plus de 10 ans à l'intersection du terrain, du hardware et du logiciel, de l'Antarctique aux cathédrales françaises.
     </p>
     <div class="hero-actions">
-      <a href="#projets" class="btn-main">Voir les projets</a>
-      <a href="#contact" class="btn-ghost">Me contacter</a>
+      <a href="#projets" class="btn-main" data-fr="Voir les projets" data-en="View projects">Voir les projets</a>
+      <a href="#contact" class="btn-ghost" data-fr="Me contacter" data-en="Contact me">Me contacter</a>
     </div>
-    <div class="hero-status">
+    <div class="hero-status" style="margin-top:40px">
       <div class="status-dot"></div>
-      <div class="status-text"><strong>Geokali</strong> · À l'écoute d'opportunités</div>
+      <div class="status-text"><strong>Geokali</strong> · <span data-fr="À l'écoute d'opportunités" data-en="Open to opportunities">À l'écoute d'opportunités</span></div>
     </div>
   </div>
 
   <div class="hero-right">
     <div class="hero-mosaic">
-      <!-- Photos terrain Maxime depuis LinkedIn banner -->
       <div class="mosaic-cell tall">
-        <img
-          src="https://media.licdn.com/dms/image/v2/D4E16AQEzv3F9fPwByQ/profile-displaybackgroundimage-shrink_350_1400/B4EZat3f2MGsAY-/0/1746612286046?e=1754524800&v=beta&t=HwA9TijLqE7pz6hGmxmLIIcNQRMqnjE0MgjKB8-vTlQ"
-          alt="Maxime Lafleur - terrain patrimoine"
-          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'project-placeholder\'><div class=\'placeholder-inner\'><svg viewBox=\'0 0 48 48\' fill=\'none\'><rect x=\'8\' y=\'12\' width=\'32\' height=\'24\' rx=\'2\' stroke=\'#9a9a9a\' stroke-width=\'1.5\'/><circle cx=\'24\' cy=\'24\' r=\'6\' stroke=\'#9a9a9a\' stroke-width=\'1.5\'/></svg><p>Photo terrain</p></div></div>';"
-        />
+        <img src="https://media.licdn.com/dms/image/v2/D4E16AQEzv3F9fPwByQ/profile-displaybackgroundimage-shrink_350_1400/B4EZat3f2MGsAY-/0/1746612286046?e=1754524800&v=beta&t=HwA9TijLqE7pz6hGmxmLIIcNQRMqnjE0MgjKB8-vTlQ" alt="Terrain patrimoine"
+          onerror="this.style.display='none'"/>
       </div>
       <div class="mosaic-cell">
-        <!-- Scan 3D / point cloud visual -->
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;background:#e8e4dc;">
-          <defs>
-            <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#30849B" stop-opacity="0.3"/>
-              <stop offset="100%" stop-color="#30849B" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <rect width="300" height="200" fill="#e8e4dc"/>
-          <circle cx="150" cy="100" r="80" fill="url(#rg1)"/>
-          <!-- point cloud dots representing a facade -->
+          <defs><radialGradient id="rg1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#30849B" stop-opacity="0.3"/><stop offset="100%" stop-color="#30849B" stop-opacity="0"/></radialGradient></defs>
+          <rect width="300" height="200" fill="#e8e4dc"/><circle cx="150" cy="100" r="80" fill="url(#rg1)"/>
           <g opacity="0.7">
-            <!-- row 1 -->
-            <circle cx="60" cy="50" r="1.2" fill="#30849B"/>
-            <circle cx="75" cy="48" r="1" fill="#FFC000"/>
-            <circle cx="90" cy="52" r="1.3" fill="#30849B"/>
-            <circle cx="105" cy="47" r="1" fill="#30849B"/>
-            <circle cx="120" cy="51" r="1.2" fill="#FFC000"/>
-            <circle cx="135" cy="49" r="1" fill="#30849B"/>
-            <circle cx="150" cy="50" r="1.3" fill="#30849B"/>
-            <circle cx="165" cy="48" r="1" fill="#FFC000"/>
-            <circle cx="180" cy="52" r="1.2" fill="#30849B"/>
-            <circle cx="195" cy="47" r="1" fill="#30849B"/>
-            <circle cx="210" cy="51" r="1.3" fill="#FFC000"/>
-            <circle cx="225" cy="49" r="1" fill="#30849B"/>
-            <circle cx="240" cy="50" r="1.2" fill="#30849B"/>
-            <!-- row 2 -->
-            <circle cx="58" cy="65" r="1" fill="#30849B"/>
-            <circle cx="73" cy="68" r="1.3" fill="#FFC000"/>
-            <circle cx="88" cy="63" r="1" fill="#30849B"/>
-            <circle cx="103" cy="66" r="1.2" fill="#30849B"/>
-            <circle cx="118" cy="64" r="1" fill="#FFC000"/>
-            <circle cx="133" cy="67" r="1.3" fill="#30849B"/>
-            <circle cx="148" cy="65" r="1" fill="#30849B"/>
-            <circle cx="163" cy="63" r="1.2" fill="#FFC000"/>
-            <circle cx="178" cy="66" r="1" fill="#30849B"/>
-            <circle cx="193" cy="64" r="1.3" fill="#30849B"/>
-            <circle cx="208" cy="67" r="1" fill="#FFC000"/>
-            <circle cx="223" cy="65" r="1.2" fill="#30849B"/>
-            <circle cx="238" cy="63" r="1" fill="#30849B"/>
-            <!-- rows 3-8 -->
-            <circle cx="60" cy="80" r="1.2" fill="#FFC000"/>
-            <circle cx="80" cy="82" r="1" fill="#30849B"/>
-            <circle cx="100" cy="79" r="1.3" fill="#30849B"/>
-            <circle cx="120" cy="81" r="1" fill="#FFC000"/>
-            <circle cx="140" cy="80" r="1.2" fill="#30849B"/>
-            <circle cx="160" cy="82" r="1" fill="#30849B"/>
-            <circle cx="180" cy="79" r="1.3" fill="#FFC000"/>
-            <circle cx="200" cy="81" r="1" fill="#30849B"/>
-            <circle cx="220" cy="80" r="1.2" fill="#30849B"/>
-            <circle cx="240" cy="82" r="1" fill="#FFC000"/>
-            <circle cx="62" cy="95" r="1" fill="#30849B"/>
-            <circle cx="82" cy="97" r="1.3" fill="#30849B"/>
-            <circle cx="102" cy="93" r="1" fill="#FFC000"/>
-            <circle cx="122" cy="96" r="1.2" fill="#30849B"/>
-            <circle cx="142" cy="94" r="1" fill="#30849B"/>
-            <circle cx="162" cy="97" r="1.3" fill="#FFC000"/>
-            <circle cx="182" cy="93" r="1" fill="#30849B"/>
-            <circle cx="202" cy="96" r="1.2" fill="#30849B"/>
-            <circle cx="222" cy="94" r="1" fill="#FFC000"/>
-            <circle cx="242" cy="97" r="1" fill="#30849B"/>
-            <circle cx="60" cy="111" r="1.3" fill="#FFC000"/>
-            <circle cx="80" cy="109" r="1" fill="#30849B"/>
-            <circle cx="100" cy="112" r="1.2" fill="#30849B"/>
-            <circle cx="120" cy="110" r="1" fill="#FFC000"/>
-            <circle cx="140" cy="112" r="1.3" fill="#30849B"/>
-            <circle cx="160" cy="109" r="1" fill="#30849B"/>
-            <circle cx="180" cy="111" r="1.2" fill="#FFC000"/>
-            <circle cx="200" cy="110" r="1" fill="#30849B"/>
-            <circle cx="220" cy="112" r="1.3" fill="#30849B"/>
-            <circle cx="240" cy="109" r="1" fill="#FFC000"/>
-            <circle cx="62" cy="126" r="1" fill="#30849B"/>
-            <circle cx="82" cy="128" r="1.2" fill="#FFC000"/>
-            <circle cx="102" cy="125" r="1.3" fill="#30849B"/>
-            <circle cx="122" cy="127" r="1" fill="#30849B"/>
-            <circle cx="142" cy="125" r="1.2" fill="#FFC000"/>
-            <circle cx="162" cy="128" r="1.3" fill="#30849B"/>
-            <circle cx="182" cy="125" r="1" fill="#30849B"/>
-            <circle cx="202" cy="127" r="1.2" fill="#FFC000"/>
-            <circle cx="222" cy="125" r="1" fill="#30849B"/>
-            <circle cx="242" cy="128" r="1.3" fill="#30849B"/>
-            <circle cx="60" cy="142" r="1.2" fill="#FFC000"/>
-            <circle cx="80" cy="140" r="1" fill="#30849B"/>
-            <circle cx="100" cy="143" r="1.3" fill="#30849B"/>
-            <circle cx="120" cy="141" r="1" fill="#FFC000"/>
-            <circle cx="140" cy="143" r="1.2" fill="#30849B"/>
-            <circle cx="160" cy="140" r="1" fill="#30849B"/>
-            <circle cx="180" cy="142" r="1.3" fill="#FFC000"/>
-            <circle cx="200" cy="141" r="1" fill="#30849B"/>
-            <circle cx="220" cy="143" r="1.2" fill="#30849B"/>
-            <circle cx="240" cy="140" r="1" fill="#FFC000"/>
-            <circle cx="62" cy="156" r="1" fill="#30849B"/>
-            <circle cx="82" cy="158" r="1.3" fill="#FFC000"/>
-            <circle cx="102" cy="155" r="1" fill="#30849B"/>
-            <circle cx="122" cy="157" r="1.2" fill="#30849B"/>
-            <circle cx="142" cy="155" r="1" fill="#FFC000"/>
-            <circle cx="162" cy="158" r="1.3" fill="#30849B"/>
-            <circle cx="182" cy="155" r="1" fill="#30849B"/>
-            <circle cx="202" cy="157" r="1.2" fill="#FFC000"/>
-            <circle cx="222" cy="155" r="1" fill="#30849B"/>
-            <circle cx="242" cy="158" r="1.3" fill="#30849B"/>
+            <circle cx="60" cy="50" r="1.2" fill="#30849B"/><circle cx="75" cy="48" r="1" fill="#FFC000"/><circle cx="90" cy="52" r="1.3" fill="#30849B"/><circle cx="105" cy="47" r="1" fill="#30849B"/><circle cx="120" cy="51" r="1.2" fill="#FFC000"/><circle cx="135" cy="49" r="1" fill="#30849B"/><circle cx="150" cy="50" r="1.3" fill="#30849B"/><circle cx="165" cy="48" r="1" fill="#FFC000"/><circle cx="180" cy="52" r="1.2" fill="#30849B"/><circle cx="195" cy="47" r="1" fill="#30849B"/><circle cx="210" cy="51" r="1.3" fill="#FFC000"/><circle cx="225" cy="49" r="1" fill="#30849B"/><circle cx="240" cy="50" r="1.2" fill="#30849B"/>
+            <circle cx="58" cy="65" r="1" fill="#30849B"/><circle cx="73" cy="68" r="1.3" fill="#FFC000"/><circle cx="88" cy="63" r="1" fill="#30849B"/><circle cx="103" cy="66" r="1.2" fill="#30849B"/><circle cx="118" cy="64" r="1" fill="#FFC000"/><circle cx="133" cy="67" r="1.3" fill="#30849B"/><circle cx="148" cy="65" r="1" fill="#30849B"/><circle cx="163" cy="63" r="1.2" fill="#FFC000"/><circle cx="178" cy="66" r="1" fill="#30849B"/><circle cx="193" cy="64" r="1.3" fill="#30849B"/><circle cx="208" cy="67" r="1" fill="#FFC000"/><circle cx="223" cy="65" r="1.2" fill="#30849B"/><circle cx="238" cy="63" r="1" fill="#30849B"/>
+            <circle cx="60" cy="80" r="1.2" fill="#FFC000"/><circle cx="80" cy="82" r="1" fill="#30849B"/><circle cx="100" cy="79" r="1.3" fill="#30849B"/><circle cx="120" cy="81" r="1" fill="#FFC000"/><circle cx="140" cy="80" r="1.2" fill="#30849B"/><circle cx="160" cy="82" r="1" fill="#30849B"/><circle cx="180" cy="79" r="1.3" fill="#FFC000"/><circle cx="200" cy="81" r="1" fill="#30849B"/><circle cx="220" cy="80" r="1.2" fill="#30849B"/><circle cx="240" cy="82" r="1" fill="#FFC000"/>
+            <circle cx="62" cy="95" r="1" fill="#30849B"/><circle cx="82" cy="97" r="1.3" fill="#30849B"/><circle cx="102" cy="93" r="1" fill="#FFC000"/><circle cx="122" cy="96" r="1.2" fill="#30849B"/><circle cx="142" cy="94" r="1" fill="#30849B"/><circle cx="162" cy="97" r="1.3" fill="#FFC000"/><circle cx="182" cy="93" r="1" fill="#30849B"/><circle cx="202" cy="96" r="1.2" fill="#30849B"/><circle cx="222" cy="94" r="1" fill="#FFC000"/><circle cx="242" cy="97" r="1" fill="#30849B"/>
+            <circle cx="60" cy="111" r="1.3" fill="#FFC000"/><circle cx="80" cy="109" r="1" fill="#30849B"/><circle cx="100" cy="112" r="1.2" fill="#30849B"/><circle cx="120" cy="110" r="1" fill="#FFC000"/><circle cx="140" cy="112" r="1.3" fill="#30849B"/><circle cx="160" cy="109" r="1" fill="#30849B"/><circle cx="180" cy="111" r="1.2" fill="#FFC000"/><circle cx="200" cy="110" r="1" fill="#30849B"/><circle cx="220" cy="112" r="1.3" fill="#30849B"/><circle cx="240" cy="109" r="1" fill="#FFC000"/>
+            <circle cx="62" cy="126" r="1" fill="#30849B"/><circle cx="82" cy="128" r="1.2" fill="#FFC000"/><circle cx="102" cy="125" r="1.3" fill="#30849B"/><circle cx="122" cy="127" r="1" fill="#30849B"/><circle cx="142" cy="125" r="1.2" fill="#FFC000"/><circle cx="162" cy="128" r="1.3" fill="#30849B"/><circle cx="182" cy="125" r="1" fill="#30849B"/><circle cx="202" cy="127" r="1.2" fill="#FFC000"/><circle cx="222" cy="125" r="1" fill="#30849B"/><circle cx="242" cy="128" r="1.3" fill="#30849B"/>
+            <circle cx="60" cy="142" r="1.2" fill="#FFC000"/><circle cx="80" cy="140" r="1" fill="#30849B"/><circle cx="100" cy="143" r="1.3" fill="#30849B"/><circle cx="120" cy="141" r="1" fill="#FFC000"/><circle cx="140" cy="143" r="1.2" fill="#30849B"/><circle cx="160" cy="140" r="1" fill="#30849B"/><circle cx="180" cy="142" r="1.3" fill="#FFC000"/><circle cx="200" cy="141" r="1" fill="#30849B"/><circle cx="220" cy="143" r="1.2" fill="#30849B"/><circle cx="240" cy="140" r="1" fill="#FFC000"/>
+            <circle cx="62" cy="156" r="1" fill="#30849B"/><circle cx="82" cy="158" r="1.3" fill="#FFC000"/><circle cx="102" cy="155" r="1" fill="#30849B"/><circle cx="122" cy="157" r="1.2" fill="#30849B"/><circle cx="142" cy="155" r="1" fill="#FFC000"/><circle cx="162" cy="158" r="1.3" fill="#30849B"/><circle cx="182" cy="155" r="1" fill="#30849B"/><circle cx="202" cy="157" r="1.2" fill="#FFC000"/><circle cx="222" cy="155" r="1" fill="#30849B"/><circle cx="242" cy="158" r="1.3" fill="#30849B"/>
           </g>
-          <!-- label -->
-          <text x="150" y="188" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9" letter-spacing="2" fill="#30849B" opacity="0.6">NUAGE DE POINTS · UAV LiDAR</text>
+          <text x="150" y="188" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" letter-spacing="2" fill="#30849B" opacity="0.6">NUAGE DE POINTS · UAV LiDAR</text>
         </svg>
       </div>
       <div class="mosaic-cell">
-        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;background:#1a1a1a;">
-          <!-- Wireframe architecture view -->
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;background:#111;">
           <rect width="300" height="200" fill="#111"/>
-          <!-- facade wireframe -->
-          <g stroke="#30849B" stroke-width="0.6" fill="none" opacity="0.8">
-            <rect x="40" y="30" width="220" height="140"/>
-            <line x1="40" y1="80" x2="260" y2="80"/>
-            <line x1="40" y1="130" x2="260" y2="130"/>
-            <line x1="90" y1="30" x2="90" y2="170"/>
-            <line x1="150" y1="30" x2="150" y2="170"/>
-            <line x1="210" y1="30" x2="210" y2="170"/>
-            <!-- windows -->
-            <rect x="55" y="42" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/>
-            <rect x="105" y="42" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/>
-            <rect x="160" y="42" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/>
-            <rect x="215" y="42" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/>
-            <rect x="55" y="92" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/>
-            <rect x="105" y="92" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/>
-            <rect x="160" y="92" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/>
-            <rect x="215" y="92" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/>
-            <!-- door -->
+          <g stroke="#30849B" stroke-width="0.7" fill="none" opacity="0.85">
+            <rect x="40" y="30" width="220" height="140"/><line x1="40" y1="80" x2="260" y2="80"/><line x1="40" y1="130" x2="260" y2="130"/><line x1="90" y1="30" x2="90" y2="170"/><line x1="150" y1="30" x2="150" y2="170"/><line x1="210" y1="30" x2="210" y2="170"/>
+            <rect x="55" y="42" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/><rect x="105" y="42" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/><rect x="160" y="42" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/><rect x="215" y="42" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/>
+            <rect x="55" y="92" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/><rect x="105" y="92" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/><rect x="160" y="92" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/><rect x="215" y="92" width="20" height="28" stroke="#FFC000" stroke-width="0.8"/>
             <rect x="130" y="135" width="40" height="35"/>
           </g>
-          <!-- dimension lines -->
-          <g stroke="#FFC000" stroke-width="0.4" opacity="0.5">
-            <line x1="30" y1="30" x2="30" y2="170"/>
-            <line x1="26" y1="30" x2="34" y2="30"/>
-            <line x1="26" y1="170" x2="34" y2="170"/>
-          </g>
-          <text x="150" y="192" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="8" letter-spacing="2" fill="#30849B" opacity="0.7">RELEVÉ ARCHITECTURAL · DWG AUTO</text>
+          <text x="150" y="192" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8" letter-spacing="2" fill="#30849B" opacity="0.7">RELEVÉ ARCHITECTURAL · DWG AUTO</text>
         </svg>
       </div>
     </div>
   </div>
 </div>
 
-<!-- STATS ROW -->
+<!-- STATS -->
 <div class="stats-row reveal">
-  <div class="stat-item">
-    <div class="stat-num">10<span>+</span></div>
-    <div class="stat-label">Années<br>d'expérience</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">5</div>
-    <div class="stat-label">Publications<br>& brevets</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">4</div>
-    <div class="stat-label">Types<br>de capteurs LiDAR</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">🌍</div>
-    <div class="stat-label">Antarctique<br>à la France</div>
-  </div>
+  <div class="stat-item"><div class="stat-num">10<span>+</span></div><div class="stat-label" data-fr="Années d'expérience" data-en="Years of experience">Années d'expérience</div></div>
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label" data-fr="Publications & brevets" data-en="Publications & patents">Publications & brevets</div></div>
+  <div class="stat-item"><div class="stat-num">4</div><div class="stat-label" data-fr="Types de capteurs LiDAR" data-en="LiDAR sensor types">Types de capteurs LiDAR</div></div>
+  <div class="stat-item"><div class="stat-num">🌍</div><div class="stat-label" data-fr="Antarctique à la France" data-en="Antarctica to France">Antarctique à la France</div></div>
 </div>
 
-<!-- PROJETS GEOKALI -->
+<!-- PROJECTS -->
 <section class="projects-section" id="projets">
   <div class="projects-header reveal">
     <div>
-      <span class="geokali-tag">Geokali · CDI depuis 2022</span>
-      <div class="section-label">Projets mis en avant</div>
-      <h2 class="section-heading">Numérisation du<br><em>Patrimoine français</em></h2>
+      <span class="geokali-tag" data-fr="Geokali · CDI depuis 2022" data-en="Geokali · Full-time since 2022">Geokali · CDI depuis 2022</span>
+      <div class="section-label" data-fr="Projets mis en avant" data-en="Featured projects">Projets mis en avant</div>
+      <h2 class="section-heading" data-fr="Numérisation du<br><em>Patrimoine français</em>" data-en="Digitizing<br><em>French Heritage</em>">Numérisation du<br><em>Patrimoine français</em></h2>
     </div>
-    <p class="projects-intro">
-      Chez Geokali, intervention sur des sites majeurs du patrimoine culturel et du génie civil, 
-      avec une chaîne complète de capteurs (UAV, TLS, MLS, DSC, lumière structurée) 
-      et des outils d'automatisation développés en interne.
+    <p class="projects-intro" data-fr="Chez Geokali, intervention sur des sites majeurs du patrimoine culturel et du génie civil, avec une chaîne complète de capteurs (UAV, TLS, MLS, DSC, lumière structurée) et des outils d'automatisation développés en interne." data-en="At Geokali, working on major cultural heritage and civil engineering sites, with a full sensor pipeline (UAV, TLS, MLS, DSC, structured light) and in-house automation tools.">
+      Chez Geokali, intervention sur des sites majeurs du patrimoine culturel et du génie civil, avec une chaîne complète de capteurs (UAV, TLS, MLS, DSC, lumière structurée) et des outils d'automatisation développés en interne.
     </p>
   </div>
-
   <div class="projects-grid reveal">
-
-    <!-- Château de Chenonceau -->
     <div class="project-card">
-      <div class="project-placeholder" style="background:#e8e4dc; position:relative; overflow:hidden;">
-        <!-- SVG illustratif château -->
+      <div class="project-placeholder" style="background:#e8e4dc;position:relative;overflow:hidden;width:100%;height:100%;">
         <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0;">
-          <rect width="600" height="400" fill="#d4cfc7"/>
-          <!-- sky gradient -->
-          <defs>
-            <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#a8c5d4"/>
-              <stop offset="100%" stop-color="#d4cfc7"/>
-            </linearGradient>
-            <linearGradient id="stone" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#c8c0b0"/>
-              <stop offset="100%" stop-color="#a8a090"/>
-            </linearGradient>
-          </defs>
-          <rect width="600" height="260" fill="url(#sky)"/>
-          <!-- water reflection -->
-          <rect x="0" y="290" width="600" height="110" fill="#8aafbf" opacity="0.4"/>
-          <!-- château simplified outline -->
+          <defs><linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#a8c5d4"/><stop offset="100%" stop-color="#d4cfc7"/></linearGradient><linearGradient id="stone" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#c8c0b0"/><stop offset="100%" stop-color="#a8a090"/></linearGradient></defs>
+          <rect width="600" height="260" fill="url(#sky)"/><rect x="0" y="290" width="600" height="110" fill="#8aafbf" opacity="0.4"/>
           <rect x="100" y="140" width="400" height="150" fill="url(#stone)" stroke="#9a9080" stroke-width="1"/>
-          <!-- towers -->
-          <rect x="80" y="80" width="60" height="180" fill="url(#stone)" stroke="#9a9080" stroke-width="1"/>
-          <rect x="460" y="80" width="60" height="180" fill="url(#stone)" stroke="#9a9080" stroke-width="1"/>
-          <rect x="200" y="100" width="50" height="160" fill="url(#stone)" stroke="#9a9080" stroke-width="1"/>
-          <rect x="350" y="100" width="50" height="160" fill="url(#stone)" stroke="#9a9080" stroke-width="1"/>
-          <!-- roofs -->
-          <polygon points="80,80 110,30 140,80" fill="#7a7870" stroke="#666" stroke-width="1"/>
-          <polygon points="460,80 490,30 520,80" fill="#7a7870" stroke="#666" stroke-width="1"/>
-          <polygon points="200,100 225,55 250,100" fill="#7a7870" stroke="#666" stroke-width="1"/>
-          <polygon points="350,100 375,55 400,100" fill="#7a7870" stroke="#666" stroke-width="1"/>
-          <!-- windows -->
-          <g fill="none" stroke="#6a9ab0" stroke-width="1" opacity="0.8">
-            <rect x="120" y="160" width="20" height="28"/>
-            <rect x="170" y="160" width="20" height="28"/>
-            <rect x="220" y="160" width="20" height="28"/>
-            <rect x="270" y="160" width="20" height="28"/>
-            <rect x="310" y="160" width="20" height="28"/>
-            <rect x="360" y="160" width="20" height="28"/>
-            <rect x="410" y="160" width="20" height="28"/>
-            <rect x="460" y="160" width="20" height="28"/>
-          </g>
-          <!-- scan point overlay -->
-          <g opacity="0.35">
-            <circle cx="150" cy="140" r="1.5" fill="#30849B"/>
-            <circle cx="200" cy="120" r="1" fill="#FFC000"/>
-            <circle cx="300" cy="110" r="1.5" fill="#30849B"/>
-            <circle cx="400" cy="120" r="1" fill="#FFC000"/>
-            <circle cx="450" cy="140" r="1.5" fill="#30849B"/>
-            <circle cx="250" cy="180" r="1" fill="#30849B"/>
-            <circle cx="350" cy="175" r="1.5" fill="#FFC000"/>
-          </g>
-          <!-- label band -->
+          <rect x="80" y="80" width="60" height="180" fill="url(#stone)" stroke="#9a9080" stroke-width="1"/><rect x="460" y="80" width="60" height="180" fill="url(#stone)" stroke="#9a9080" stroke-width="1"/><rect x="200" y="100" width="50" height="160" fill="url(#stone)" stroke="#9a9080" stroke-width="1"/><rect x="350" y="100" width="50" height="160" fill="url(#stone)" stroke="#9a9080" stroke-width="1"/>
+          <polygon points="80,80 110,30 140,80" fill="#7a7870" stroke="#666" stroke-width="1"/><polygon points="460,80 490,30 520,80" fill="#7a7870" stroke="#666" stroke-width="1"/><polygon points="200,100 225,55 250,100" fill="#7a7870" stroke="#666" stroke-width="1"/><polygon points="350,100 375,55 400,100" fill="#7a7870" stroke="#666" stroke-width="1"/>
+          <g fill="none" stroke="#6a9ab0" stroke-width="1" opacity="0.8"><rect x="120" y="160" width="20" height="28"/><rect x="170" y="160" width="20" height="28"/><rect x="220" y="160" width="20" height="28"/><rect x="270" y="160" width="20" height="28"/><rect x="310" y="160" width="20" height="28"/><rect x="360" y="160" width="20" height="28"/><rect x="410" y="160" width="20" height="28"/><rect x="460" y="160" width="20" height="28"/></g>
           <rect x="0" y="360" width="600" height="40" fill="rgba(26,26,26,0.5)"/>
-          <text x="30" y="386" font-family="'DM Sans', sans-serif" font-size="10" letter-spacing="2" fill="white" opacity="0.7">NUMÉRISATION 3D · PATRIMOINE UNESCO</text>
+          <text x="30" y="386" font-family="'DM Sans',sans-serif" font-size="10" letter-spacing="2" fill="white" opacity="0.7">NUMÉRISATION 3D · PATRIMOINE UNESCO</text>
         </svg>
       </div>
       <div class="project-overlay">
-        <div class="project-cat">Patrimoine · Relevé architectural</div>
+        <div class="project-cat" data-fr="Patrimoine · Relevé architectural" data-en="Heritage · Architectural survey">Patrimoine · Relevé architectural</div>
         <div class="project-title">Château de Chenonceau</div>
-        <div class="project-tags">
-          <span class="project-tag">TLS</span>
-          <span class="project-tag">Photogrammétrie</span>
-          <span class="project-tag">DWG Auto</span>
-          <span class="project-tag">Ortho-image</span>
-        </div>
-        <a href="https://www.geokali.com/chateau-de-chenonceau/" target="_blank" class="project-link">Voir le projet sur Geokali</a>
+        <div class="project-tags"><span class="project-tag">TLS</span><span class="project-tag" data-fr="Photogrammétrie" data-en="Photogrammetry">Photogrammétrie</span><span class="project-tag">DWG Auto</span><span class="project-tag">Ortho-image</span></div>
+        <a href="https://www.geokali.com/chateau-de-chenonceau/" target="_blank" class="project-link" data-fr="Voir le projet sur Geokali" data-en="View project on Geokali">Voir le projet sur Geokali</a>
       </div>
     </div>
-
-    <!-- Notre-Dame de Dijon -->
     <div class="project-card">
-      <div class="project-placeholder" style="background:#1a1a1a; position:relative; overflow:hidden;">
+      <div class="project-placeholder" style="background:#1a1a1a;position:relative;overflow:hidden;width:100%;height:100%;">
         <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0;">
-          <rect width="600" height="400" fill="#111"/>
-          <defs>
-            <linearGradient id="nightsky" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#0d1520"/>
-              <stop offset="100%" stop-color="#1a1a1a"/>
-            </linearGradient>
-          </defs>
+          <defs><linearGradient id="nightsky" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0d1520"/><stop offset="100%" stop-color="#1a1a1a"/></linearGradient></defs>
           <rect width="600" height="400" fill="url(#nightsky)"/>
-          <!-- gothic facade wireframe -->
           <g stroke="#30849B" stroke-width="0.7" fill="none" opacity="0.85">
-            <!-- central nave -->
-            <rect x="200" y="60" width="200" height="280"/>
-            <!-- left tower -->
-            <rect x="60" y="100" width="140" height="240"/>
-            <!-- right tower -->
-            <rect x="400" y="100" width="140" height="240"/>
-            <!-- rose window -->
-            <circle cx="300" cy="140" r="35" stroke="#FFC000" stroke-width="0.8"/>
-            <circle cx="300" cy="140" r="25"/>
-            <circle cx="300" cy="140" r="12"/>
-            <!-- rose petals -->
-            <line x1="300" y1="105" x2="300" y2="175" stroke="#FFC000" stroke-width="0.5"/>
-            <line x1="265" y1="140" x2="335" y2="140" stroke="#FFC000" stroke-width="0.5"/>
-            <line x1="275" y1="115" x2="325" y2="165" stroke="#FFC000" stroke-width="0.5"/>
-            <line x1="275" y1="165" x2="325" y2="115" stroke="#FFC000" stroke-width="0.5"/>
-            <!-- gothic arches -->
-            <path d="M 230 200 Q 270 160 310 200" stroke="#30849B"/>
-            <path d="M 290 200 Q 330 160 370 200" stroke="#30849B"/>
-            <!-- portals -->
-            <path d="M 90 340 Q 130 290 170 340"/>
-            <path d="M 215 340 Q 255 290 295 340" stroke="#FFC000"/>
-            <path d="M 305 340 Q 345 290 385 340" stroke="#FFC000"/>
-            <path d="M 430 340 Q 470 290 510 340"/>
-            <!-- spires -->
-            <polygon points="130,100 130,40 170,100" stroke="#30849B" fill="rgba(48,132,155,0.1)"/>
-            <polygon points="430,100 430,40 470,100" stroke="#30849B" fill="rgba(48,132,155,0.1)"/>
-            <polygon points="270,60 300,0 330,60" stroke="#FFC000" fill="rgba(255,192,0,0.08)"/>
+            <rect x="200" y="60" width="200" height="280"/><rect x="60" y="100" width="140" height="240"/><rect x="400" y="100" width="140" height="240"/>
+            <circle cx="300" cy="140" r="35" stroke="#FFC000" stroke-width="0.8"/><circle cx="300" cy="140" r="25"/><circle cx="300" cy="140" r="12"/>
+            <line x1="300" y1="105" x2="300" y2="175" stroke="#FFC000" stroke-width="0.5"/><line x1="265" y1="140" x2="335" y2="140" stroke="#FFC000" stroke-width="0.5"/><line x1="275" y1="115" x2="325" y2="165" stroke="#FFC000" stroke-width="0.5"/><line x1="275" y1="165" x2="325" y2="115" stroke="#FFC000" stroke-width="0.5"/>
+            <path d="M 230 200 Q 270 160 310 200"/><path d="M 290 200 Q 330 160 370 200"/>
+            <path d="M 90 340 Q 130 290 170 340"/><path d="M 215 340 Q 255 290 295 340" stroke="#FFC000"/><path d="M 305 340 Q 345 290 385 340" stroke="#FFC000"/><path d="M 430 340 Q 470 290 510 340"/>
+            <polygon points="130,100 130,40 170,100" fill="rgba(48,132,155,0.1)"/><polygon points="430,100 430,40 470,100" fill="rgba(48,132,155,0.1)"/><polygon points="270,60 300,0 330,60" stroke="#FFC000" fill="rgba(255,192,0,0.08)"/>
           </g>
-          <!-- point cloud overlay -->
-          <g opacity="0.4">
-            <circle cx="100" cy="150" r="1.3" fill="#30849B"/>
-            <circle cx="150" cy="130" r="1" fill="#FFC000"/>
-            <circle cx="200" cy="100" r="1.3" fill="#30849B"/>
-            <circle cx="300" cy="80" r="1" fill="#FFC000"/>
-            <circle cx="400" cy="100" r="1.3" fill="#30849B"/>
-            <circle cx="450" cy="130" r="1" fill="#FFC000"/>
-            <circle cx="500" cy="150" r="1.3" fill="#30849B"/>
-            <circle cx="250" cy="200" r="1" fill="#30849B"/>
-            <circle cx="350" cy="195" r="1.3" fill="#FFC000"/>
-          </g>
-          <text x="30" y="390" font-family="'DM Sans', sans-serif" font-size="10" letter-spacing="2" fill="#30849B" opacity="0.7">RELEVÉ LASERGRAMMÉTRIQUE · FAÇADE GOTHIQUE</text>
+          <text x="30" y="390" font-family="'DM Sans',sans-serif" font-size="10" letter-spacing="2" fill="#30849B" opacity="0.7">RELEVÉ LASERGRAMMÉTRIQUE · FAÇADE GOTHIQUE</text>
         </svg>
       </div>
       <div class="project-overlay">
-        <div class="project-cat">Patrimoine · Relevé de façade</div>
+        <div class="project-cat" data-fr="Patrimoine · Relevé de façade" data-en="Heritage · Facade survey">Patrimoine · Relevé de façade</div>
         <div class="project-title">Notre-Dame de Dijon</div>
-        <div class="project-tags">
-          <span class="project-tag">MLS</span>
-          <span class="project-tag">TLS</span>
-          <span class="project-tag">Lasergrammétrie</span>
-          <span class="project-tag">Mesh 3D</span>
-        </div>
-        <a href="https://www.geokali.com/notre-dame-dijon/" target="_blank" class="project-link">Voir le projet sur Geokali</a>
+        <div class="project-tags"><span class="project-tag">MLS</span><span class="project-tag">TLS</span><span class="project-tag" data-fr="Lasergrammétrie" data-en="Lasergrammetry">Lasergrammétrie</span><span class="project-tag">Mesh 3D</span></div>
+        <a href="https://www.geokali.com/notre-dame-dijon/" target="_blank" class="project-link" data-fr="Voir le projet sur Geokali" data-en="View project on Geokali">Voir le projet sur Geokali</a>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- EXPERIENCE -->
 <section class="experience-section" id="experience">
-  <div class="section-label reveal">Parcours professionnel</div>
-  <h2 class="section-heading reveal">10 ans d'<em>ingénierie UAV</em><br>& données 3D</h2>
-
+  <div class="section-label reveal" data-fr="Parcours professionnel" data-en="Professional experience">Parcours professionnel</div>
+  <h2 class="section-heading reveal" data-fr="10 ans d'<em>ingénierie UAV</em><br>& données 3D" data-en="10 years of <em>UAV engineering</em><br>& 3D data">10 ans d'<em>ingénierie UAV</em><br>& données 3D</h2>
   <div class="exp-layout reveal">
     <div class="exp-sidebar">
-      <div class="exp-tab active" onclick="showExp('geokali', this)">
+      <div class="exp-tab active" onclick="showExp('geokali',this)">
         <div class="tab-company">Geokali</div>
-        <div class="tab-role">Photogrammetry / Lasergrammetry Engineer</div>
-        <div class="tab-period">2022 → Présent · 3 ans 8 mois</div>
+        <div class="tab-role" data-fr="Photogrammetry / Lasergrammetry Engineer" data-en="Photogrammetry / Lasergrammetry Engineer">Photogrammetry / Lasergrammetry Engineer</div>
+        <div class="tab-period" data-fr="2022 → Présent · 3 ans 8 mois" data-en="2022 → Present · 3 yrs 8 mo">2022 → Présent · 3 ans 8 mois</div>
       </div>
-      <div class="exp-tab" onclick="showExp('microdrones', this)">
+      <div class="exp-tab" onclick="showExp('microdrones',this)">
         <div class="tab-company">Microdrones™ / GeoCue</div>
-        <div class="tab-role">UAV LiDAR Engineer · R&D</div>
-        <div class="tab-period">2016 → 2022 · 6 ans 5 mois</div>
+        <div class="tab-role" data-fr="UAV LiDAR Engineer · R&D" data-en="UAV LiDAR Engineer · R&D">UAV LiDAR Engineer · R&D</div>
+        <div class="tab-period" data-fr="2016 → 2022 · 6 ans 5 mois" data-en="2016 → 2022 · 6 yrs 5 mo">2016 → 2022 · 6 ans 5 mois</div>
       </div>
-      <div class="exp-tab" onclick="showExp('cnrs', this)">
+      <div class="exp-tab" onclick="showExp('cnrs',this)">
         <div class="tab-company">CEFE CNRS</div>
-        <div class="tab-role">3D / GIS · Antarctique</div>
-        <div class="tab-period">2021 → 2022 · 1 an 6 mois</div>
+        <div class="tab-role" data-fr="3D / GIS · Antarctique" data-en="3D / GIS · Antarctica">3D / GIS · Antarctique</div>
+        <div class="tab-period" data-fr="2021 → 2022 · 1 an 6 mois" data-en="2021 → 2022 · 1 yr 6 mo">2021 → 2022 · 1 an 6 mois</div>
       </div>
-      <div class="exp-tab" onclick="showExp('delair', this)">
+      <div class="exp-tab" onclick="showExp('delair',this)">
         <div class="tab-company">Delair</div>
-        <div class="tab-role">UAV Engineer</div>
+        <div class="tab-role" data-fr="UAV Engineer" data-en="UAV Engineer">UAV Engineer</div>
         <div class="tab-period">2016 → 2018 · 2 ans</div>
       </div>
-      <div class="exp-tab" onclick="showExp('inventuav', this)">
+      <div class="exp-tab" onclick="showExp('inventuav',this)">
         <div class="tab-company">InventUAV</div>
-        <div class="tab-role">Co-Fondateur</div>
+        <div class="tab-role" data-fr="Co-Fondateur" data-en="Co-Founder">Co-Fondateur</div>
         <div class="tab-period">2015 → 2016 · 1 an</div>
       </div>
-      <div class="exp-tab" onclick="showExp('visionciel', this)">
+      <div class="exp-tab" onclick="showExp('visionciel',this)">
         <div class="tab-company">Vision du Ciel Intl</div>
-        <div class="tab-role">UAV Apps Engineer (GCS/GUI)</div>
+        <div class="tab-role" data-fr="UAV Apps Engineer (GCS/GUI)" data-en="UAV Apps Engineer (GCS/GUI)">UAV Apps Engineer (GCS/GUI)</div>
         <div class="tab-period">2014 → 2015 · 1 an</div>
       </div>
-      <div class="exp-tab" onclick="showExp('sii', this)">
+      <div class="exp-tab" onclick="showExp('sii',this)">
         <div class="tab-company">Groupe SII · Nexter</div>
-        <div class="tab-role">Architecte Système</div>
+        <div class="tab-role" data-fr="Architecte Système" data-en="System Architect">Architecte Système</div>
         <div class="tab-period">2013 → 2014 · 1 an</div>
       </div>
     </div>
 
-    <!-- Details -->
     <div id="exp-geokali" class="exp-detail active">
       <div class="exp-detail-header">
         <div>
-          <div class="exp-detail-title">Photogrammetry / Lasergrammetry<br>Engineer</div>
-          <div class="exp-detail-company">Geokali · CDI · Valence, Auvergne-Rhône-Alpes</div>
+          <div class="exp-detail-title" data-fr="Photogrammetry / Lasergrammetry<br>Engineer" data-en="Photogrammetry / Lasergrammetry<br>Engineer">Photogrammetry / Lasergrammetry<br>Engineer</div>
+          <div class="exp-detail-company" data-fr="Geokali · CDI · Valence, Auvergne-Rhône-Alpes" data-en="Geokali · Full-time · Valence, France">Geokali · CDI · Valence, Auvergne-Rhône-Alpes</div>
         </div>
         <div class="exp-detail-period">
-          <div class="exp-detail-years">3 ans</div>
-          <div class="exp-detail-dates">oct. 2022 → aujourd'hui</div>
+          <div class="exp-detail-years" data-fr="3 ans" data-en="3 yrs">3 ans</div>
+          <div class="exp-detail-dates" data-fr="oct. 2022 → aujourd'hui" data-en="Oct. 2022 → present">oct. 2022 → aujourd'hui</div>
         </div>
       </div>
       <div class="exp-detail-body">
-        <p>Acquisition et traitement de données 3D sur des sites de <strong>patrimoine culturel et de génie civil</strong>, avec une flotte complète de capteurs : drones UAV, scanners laser terrestres (TLS), scanners mobiles (MLS), caméras DSC et lasers à lumière structurée.</p>
-        <p><strong>Développement d'outils d'automatisation :</strong></p>
+        <p data-fr="Acquisition et traitement de données 3D sur des sites de <strong>patrimoine culturel et de génie civil</strong>, avec une flotte complète de capteurs : drones UAV, scanners laser terrestres (TLS), scanners mobiles (MLS), caméras DSC et lasers à lumière structurée." data-en="3D data acquisition and processing on <strong>cultural heritage and civil engineering</strong> sites, using a full sensor fleet: UAV drones, terrestrial laser scanners (TLS), mobile laser scanners (MLS), DSC cameras and structured light lasers.">Acquisition et traitement de données 3D sur des sites de <strong>patrimoine culturel et de génie civil</strong>, avec une flotte complète de capteurs : drones UAV, scanners laser terrestres (TLS), scanners mobiles (MLS), caméras DSC et lasers à lumière structurée.</p>
+        <p><strong data-fr="Développement d'outils d'automatisation :" data-en="Automation tool development:">Développement d'outils d'automatisation :</strong></p>
         <ul>
-          <li>Contrôle qualité laser et photo on-site</li>
-          <li>Enhancement de données : nettoyage & débruitage laser, optimisation d'images et ortho-images</li>
-          <li>Détection de zones interpolées issues de la reconstruction 3D</li>
-          <li>Extraction automatisée de plans 2D/élévations (mesh 3D → DWG via Leica SDK) avec export automatique des calques : texture, mesh, contours, profondeur, xray</li>
-          <li>Fusion de reconstructions 3D multi-sources : Photos / MLS / TLS / Scanners à lumière structurée</li>
+          <li data-fr="Contrôle qualité laser et photo on-site" data-en="On-site laser and photo quality control">Contrôle qualité laser et photo on-site</li>
+          <li data-fr="Enhancement de données : nettoyage & débruitage laser, optimisation d'images et ortho-images" data-en="Data enhancement: laser cleaning & denoising, image and ortho-image optimisation">Enhancement de données : nettoyage & débruitage laser, optimisation d'images et ortho-images</li>
+          <li data-fr="Détection de zones interpolées issues de la reconstruction 3D" data-en="Detection of interpolated areas from 3D reconstruction">Détection de zones interpolées issues de la reconstruction 3D</li>
+          <li data-fr="Extraction automatisée de plans 2D/élévations (mesh 3D → DWG via Leica SDK) avec export automatique des calques : texture, mesh, contours, profondeur, xray" data-en="Fully automated 2D plans/elevations extraction (3D mesh → DWG via Leica SDK) with automated layer exports: texture, mesh, contours, depth, xray">Extraction automatisée de plans 2D/élévations (mesh 3D → DWG via Leica SDK) avec export automatique des calques : texture, mesh, contours, profondeur, xray</li>
+          <li data-fr="Fusion de reconstructions 3D multi-sources : Photos / MLS / TLS / Scanners à lumière structurée" data-en="3D reconstruction fusion from multiple sources: Photos / MLS / TLS / Structured-light scanners">Fusion de reconstructions 3D multi-sources : Photos / MLS / TLS / Scanners à lumière structurée</li>
         </ul>
-        <p><strong>R&D & Hardware :</strong> Design et prototypage de matériel spécialisé — trépied laser tout-terrain, systèmes d'absorption de vibrations (vestes steadycam, gimbals 3D). Benchmarks de scanners mobiles, scripting EXIF, calibration caméra, archivage redondant.</p>
+        <p data-fr="<strong>R&D & Hardware :</strong> Design et prototypage de matériel spécialisé — trépied laser tout-terrain, systèmes d'absorption de vibrations (vestes steadycam, gimbals 3D). Benchmarks de scanners mobiles, scripting EXIF, calibration caméra, archivage redondant." data-en="<strong>R&D & Hardware:</strong> Design and prototyping of specialised equipment — all-terrain laser tripod, vibration absorption systems (steadycam vests, 3D gimbals). Mobile scanner benchmarks, EXIF scripting, camera calibration, redundant archiving."><strong>R&D & Hardware :</strong> Design et prototypage de matériel spécialisé — trépied laser tout-terrain, systèmes d'absorption de vibrations (vestes steadycam, gimbals 3D). Benchmarks de scanners mobiles, scripting EXIF, calibration caméra, archivage redondant.</p>
       </div>
       <div class="detail-tags">
-        <span class="detail-tag primary">Photogrammétrie</span>
+        <span class="detail-tag primary" data-fr="Photogrammétrie" data-en="Photogrammetry">Photogrammétrie</span>
         <span class="detail-tag primary">LiDAR TLS/MLS</span>
         <span class="detail-tag primary">UAV</span>
-        <span class="detail-tag primary">Reconstruction 3D</span>
+        <span class="detail-tag primary" data-fr="Reconstruction 3D" data-en="3D Reconstruction">Reconstruction 3D</span>
         <span class="detail-tag">Leica SDK</span>
         <span class="detail-tag">DWG Automation</span>
-        <span class="detail-tag">Nuages de points</span>
+        <span class="detail-tag" data-fr="Nuages de points" data-en="Point Clouds">Nuages de points</span>
         <span class="detail-tag">Hardware Prototyping</span>
-        <span class="detail-tag">Patrimoine culturel</span>
+        <span class="detail-tag" data-fr="Patrimoine culturel" data-en="Cultural Heritage">Patrimoine culturel</span>
         <span class="detail-tag">R&D</span>
       </div>
     </div>
@@ -1400,59 +486,59 @@ footer a {
       <div class="exp-detail-header">
         <div>
           <div class="exp-detail-title">UAV LiDAR Engineer</div>
-          <div class="exp-detail-company">Microdrones™ / GeoCue · R&D · Toulouse</div>
+          <div class="exp-detail-company" data-fr="Microdrones™ / GeoCue · R&D · Toulouse" data-en="Microdrones™ / GeoCue · R&D · Toulouse">Microdrones™ / GeoCue · R&D · Toulouse</div>
         </div>
         <div class="exp-detail-period">
-          <div class="exp-detail-years">6 ans</div>
-          <div class="exp-detail-dates">mai 2016 → sept. 2022</div>
+          <div class="exp-detail-years" data-fr="6 ans" data-en="6 yrs">6 ans</div>
+          <div class="exp-detail-dates" data-fr="mai 2016 → sept. 2022" data-en="May 2016 → Sept. 2022">mai 2016 → sept. 2022</div>
         </div>
       </div>
       <div class="exp-detail-body">
-        <p>Au sein du département R&D de Microdrones / GeoCue, en charge du développement de <strong>nouveaux prototypes LiDAR embarqués en UAV</strong>, conception de cibles LiDAR de haute précision, et contrôle qualité de nouveaux logiciels de traitement.</p>
+        <p data-fr="Au sein du département R&D de Microdrones / GeoCue, en charge du développement de <strong>nouveaux prototypes LiDAR embarqués en UAV</strong>, conception de cibles LiDAR de haute précision, et contrôle qualité de nouveaux logiciels de traitement." data-en="Within the R&D department of Microdrones / GeoCue, responsible for developing <strong>new UAV-embedded LiDAR prototypes</strong>, designing high-precision LiDAR targets, and QC of new processing software.">Au sein du département R&D de Microdrones / GeoCue, en charge du développement de <strong>nouveaux prototypes LiDAR embarqués en UAV</strong>, conception de cibles LiDAR de haute précision, et contrôle qualité de nouveaux logiciels de traitement.</p>
         <ul>
-          <li>Design hardware de systèmes LiDAR UAV</li>
-          <li>Tests terrain et data QC</li>
-          <li>Benchmarks matériel et logiciel</li>
-          <li>Développement d'un outil de comptage automatisé d'arbres</li>
-          <li>Classification automatique de lignes électriques (powerlines)</li>
-          <li>Développement et certification d'un système de parachute (approbation EASA)</li>
+          <li data-fr="Design hardware de systèmes LiDAR UAV" data-en="Hardware design of UAV LiDAR systems">Design hardware de systèmes LiDAR UAV</li>
+          <li data-fr="Tests terrain et data QC" data-en="Field testing and data QC">Tests terrain et data QC</li>
+          <li data-fr="Benchmarks matériel et logiciel" data-en="Hardware and software benchmarks">Benchmarks matériel et logiciel</li>
+          <li data-fr="Développement d'un outil de comptage automatisé d'arbres" data-en="Development of an automated tree counting tool">Développement d'un outil de comptage automatisé d'arbres</li>
+          <li data-fr="Classification automatique de lignes électriques (powerlines)" data-en="Automated powerline classification">Classification automatique de lignes électriques (powerlines)</li>
+          <li data-fr="Développement et certification d'un système de parachute (approbation EASA)" data-en="Parachute system development and EASA certification approval">Développement et certification d'un système de parachute (approbation EASA)</li>
         </ul>
       </div>
       <div class="detail-tags">
         <span class="detail-tag primary">UAV LiDAR R&D</span>
         <span class="detail-tag primary">Hardware Design</span>
-        <span class="detail-tag">Certification EASA</span>
+        <span class="detail-tag" data-fr="Certification EASA" data-en="EASA Certification">Certification EASA</span>
         <span class="detail-tag">Powerline Classification</span>
         <span class="detail-tag">Tree Counting</span>
-        <span class="detail-tag">Field Testing</span>
+        <span class="detail-tag" data-fr="Tests terrain" data-en="Field Testing">Tests terrain</span>
       </div>
     </div>
 
     <div id="exp-cnrs" class="exp-detail">
       <div class="exp-detail-header">
         <div>
-          <div class="exp-detail-title">3D / GIS Support<br>Étude Antarctique (PhD)</div>
-          <div class="exp-detail-company">CEFE CNRS · Service Civique · Remote</div>
+          <div class="exp-detail-title" data-fr="3D / GIS Support<br>Étude Antarctique (PhD)" data-en="3D / GIS Support<br>Antarctic Study (PhD)">3D / GIS Support<br>Étude Antarctique (PhD)</div>
+          <div class="exp-detail-company" data-fr="CEFE CNRS · Service Civique · Remote" data-en="CEFE CNRS · Civic Service · Remote">CEFE CNRS · Service Civique · Remote</div>
         </div>
         <div class="exp-detail-period">
-          <div class="exp-detail-years">1.5 ans</div>
-          <div class="exp-detail-dates">févr. 2021 → juil. 2022</div>
+          <div class="exp-detail-years" data-fr="1,5 ans" data-en="1.5 yrs">1,5 ans</div>
+          <div class="exp-detail-dates" data-fr="févr. 2021 → juil. 2022" data-en="Feb. 2021 → Jul. 2022">févr. 2021 → juil. 2022</div>
         </div>
       </div>
       <div class="exp-detail-body">
-        <p>Support technique et méthodologique pour un projet de thèse sur la <strong>distribution spatiale des manchots en Antarctique</strong>. Traitement 3D de 11 sites antarctiques.</p>
+        <p data-fr="Support technique et méthodologique pour un projet de thèse sur la <strong>distribution spatiale des manchots en Antarctique</strong>. Traitement 3D de 11 sites antarctiques." data-en="Technical and methodological support for a PhD project on the <strong>spatial distribution of penguins in Antarctica</strong>. 3D processing of 11 Antarctic sites.">Support technique et méthodologique pour un projet de thèse sur la <strong>distribution spatiale des manchots en Antarctique</strong>. Traitement 3D de 11 sites antarctiques.</p>
         <ul>
-          <li>Post-traitement PPP des bases GNSS</li>
-          <li>Traitement PPK LiDAR</li>
-          <li>Photogrammétrie multi-sites</li>
-          <li>Génération d'Ortho-DEM de précision</li>
+          <li data-fr="Post-traitement PPP des bases GNSS" data-en="GNSS base station PPP post-processing">Post-traitement PPP des bases GNSS</li>
+          <li data-fr="Traitement PPK LiDAR" data-en="PPK LiDAR processing">Traitement PPK LiDAR</li>
+          <li data-fr="Photogrammétrie multi-sites" data-en="Multi-site photogrammetry">Photogrammétrie multi-sites</li>
+          <li data-fr="Génération d'Ortho-DEM de précision" data-en="High-precision Ortho-DEM generation">Génération d'Ortho-DEM de précision</li>
         </ul>
       </div>
       <div class="detail-tags">
-        <span class="detail-tag primary">Antarctique</span>
+        <span class="detail-tag primary" data-fr="Antarctique" data-en="Antarctica">Antarctique</span>
         <span class="detail-tag primary">PPK LiDAR</span>
         <span class="detail-tag">GNSS PPP</span>
-        <span class="detail-tag">Photogrammétrie</span>
+        <span class="detail-tag" data-fr="Photogrammétrie" data-en="Photogrammetry">Photogrammétrie</span>
         <span class="detail-tag">Ortho-DEM</span>
         <span class="detail-tag">GIS</span>
       </div>
@@ -1461,8 +547,8 @@ footer a {
     <div id="exp-delair" class="exp-detail">
       <div class="exp-detail-header">
         <div>
-          <div class="exp-detail-title">UAV Engineer<br>Payload Integration & Control/Command</div>
-          <div class="exp-detail-company">Delair · CDI · Toulouse</div>
+          <div class="exp-detail-title" data-fr="UAV Engineer<br>Payload Integration & Control/Command" data-en="UAV Engineer<br>Payload Integration & Control/Command">UAV Engineer<br>Payload Integration & Control/Command</div>
+          <div class="exp-detail-company" data-fr="Delair · CDI · Toulouse" data-en="Delair · Full-time · Toulouse">Delair · CDI · Toulouse</div>
         </div>
         <div class="exp-detail-period">
           <div class="exp-detail-years">2 ans</div>
@@ -1470,33 +556,32 @@ footer a {
         </div>
       </div>
       <div class="exp-detail-body">
-        <p>Intégration de charges utiles (payloads) et développement du <strong>système de contrôle-commande</strong> pour les drones à voilure fixe de Delair-Tech Analytics.</p>
-        <p>Interface entre les capteurs embarqués et les plateformes UAV industrielles pour des applications de cartographie et d'inspection.</p>
+        <p data-fr="Intégration de charges utiles (payloads) et développement du <strong>système de contrôle-commande</strong> pour les drones à voilure fixe de Delair-Tech Analytics." data-en="Payload integration and <strong>control/command system development</strong> for Delair-Tech Analytics fixed-wing drones.">Intégration de charges utiles (payloads) et développement du <strong>système de contrôle-commande</strong> pour les drones à voilure fixe de Delair-Tech Analytics.</p>
       </div>
       <div class="detail-tags">
         <span class="detail-tag primary">Payload Integration</span>
-        <span class="detail-tag">Fixed-Wing UAV</span>
-        <span class="detail-tag">Systèmes embarqués</span>
+        <span class="detail-tag" data-fr="Drone voilure fixe" data-en="Fixed-Wing UAV">Drone voilure fixe</span>
+        <span class="detail-tag" data-fr="Systèmes embarqués" data-en="Embedded Systems">Systèmes embarqués</span>
       </div>
     </div>
 
     <div id="exp-inventuav" class="exp-detail">
       <div class="exp-detail-header">
         <div>
-          <div class="exp-detail-title">Co-Fondateur</div>
-          <div class="exp-detail-company">InventUAV · Startup Open-Source · France</div>
+          <div class="exp-detail-title" data-fr="Co-Fondateur" data-en="Co-Founder">Co-Fondateur</div>
+          <div class="exp-detail-company" data-fr="InventUAV · Startup Open-Source · France" data-en="InventUAV · Open-Source Startup · France">InventUAV · Startup Open-Source · France</div>
         </div>
         <div class="exp-detail-period">
           <div class="exp-detail-years">1 an</div>
-          <div class="exp-detail-dates">mai 2015 → mai 2016</div>
+          <div class="exp-detail-dates" data-fr="mai 2015 → mai 2016" data-en="May 2015 → May 2016">mai 2015 → mai 2016</div>
         </div>
       </div>
       <div class="exp-detail-body">
-        <p>Co-fondateur d'une startup UAV open-source développant un <strong>drone autonome indoor</strong> pour la gestion d'entrepôts et d'inventaires.</p>
+        <p data-fr="Co-fondateur d'une startup UAV open-source développant un <strong>drone autonome indoor</strong> pour la gestion d'entrepôts et d'inventaires." data-en="Co-founder of an open-source UAV startup developing an <strong>autonomous indoor drone</strong> for warehouse management and inventory.">Co-fondateur d'une startup UAV open-source développant un <strong>drone autonome indoor</strong> pour la gestion d'entrepôts et d'inventaires.</p>
         <ul>
-          <li>Plugin ArduPlane pour Gazebo / ROS</li>
-          <li>Debug ArduCopter</li>
-          <li>Reconnaissance visuelle pour missions indoor</li>
+          <li data-fr="Plugin ArduPlane pour Gazebo / ROS" data-en="ArduPlane plugin for Gazebo / ROS">Plugin ArduPlane pour Gazebo / ROS</li>
+          <li data-fr="Debug ArduCopter" data-en="ArduCopter debugging">Debug ArduCopter</li>
+          <li data-fr="Reconnaissance visuelle pour missions indoor" data-en="Visual recognition for indoor missions">Reconnaissance visuelle pour missions indoor</li>
         </ul>
       </div>
       <div class="detail-tags">
@@ -1511,21 +596,20 @@ footer a {
       <div class="exp-detail-header">
         <div>
           <div class="exp-detail-title">UAV Apps Engineer (GCS / GUI)</div>
-          <div class="exp-detail-company">Vision du Ciel Intl · Orange</div>
+          <div class="exp-detail-company" data-fr="Vision du Ciel Intl · Orange" data-en="Vision du Ciel Intl · Orange">Vision du Ciel Intl · Orange</div>
         </div>
         <div class="exp-detail-period">
           <div class="exp-detail-years">1 an</div>
-          <div class="exp-detail-dates">juil. 2014 → juin 2015</div>
+          <div class="exp-detail-dates" data-fr="juil. 2014 → juin 2015" data-en="Jul. 2014 → Jun. 2015">juil. 2014 → juin 2015</div>
         </div>
       </div>
       <div class="exp-detail-body">
-        <p>Développement de nouvelles solutions logicielles de <strong>contrôle de missions UAV</strong> sur Windows : planification, contrôle de mission, supervision et reporting.</p>
+        <p data-fr="Développement de solutions logicielles de <strong>contrôle de missions UAV</strong> sur Windows : planification, contrôle de mission, supervision et reporting." data-en="Development of <strong>UAV mission control</strong> software solutions on Windows: mission planning, control, supervision and reporting.">Développement de solutions logicielles de <strong>contrôle de missions UAV</strong> sur Windows : planification, contrôle de mission, supervision et reporting.</p>
         <ul>
-          <li>Développement GUI en C#, JS, Python</li>
-          <li>Développement embarqué C++</li>
-          <li>Intégration protocoles open-source et industriels</li>
-          <li>Prototypage : UAVs, radiocommandes, gimbals, parachutes</li>
-          <li>Réglages multirotors et avions (Pixhawk, Alexmos)</li>
+          <li data-fr="Développement GUI en C#, JS, Python" data-en="GUI development in C#, JS, Python">Développement GUI en C#, JS, Python</li>
+          <li data-fr="Développement embarqué C++" data-en="Embedded development in C++">Développement embarqué C++</li>
+          <li data-fr="Intégration protocoles open-source et industriels" data-en="Open-source and industrial protocol integration">Intégration protocoles open-source et industriels</li>
+          <li data-fr="Prototypage : UAVs, radiocommandes, gimbals, parachutes" data-en="Prototyping: UAVs, radio controllers, gimbals, parachutes">Prototypage : UAVs, radiocommandes, gimbals, parachutes</li>
         </ul>
       </div>
       <div class="detail-tags">
@@ -1539,52 +623,50 @@ footer a {
     <div id="exp-sii" class="exp-detail">
       <div class="exp-detail-header">
         <div>
-          <div class="exp-detail-title">Architecte Système<br>Nexter Systems</div>
+          <div class="exp-detail-title" data-fr="Architecte Système<br>Nexter Systems" data-en="System Architect<br>Nexter Systems">Architecte Système<br>Nexter Systems</div>
           <div class="exp-detail-company">Groupe SII · Satory</div>
         </div>
         <div class="exp-detail-period">
           <div class="exp-detail-years">1 an</div>
-          <div class="exp-detail-dates">oct. 2013 → juil. 2014</div>
+          <div class="exp-detail-dates" data-fr="oct. 2013 → juil. 2014" data-en="Oct. 2013 → Jul. 2014">oct. 2013 → juil. 2014</div>
         </div>
       </div>
       <div class="exp-detail-body">
-        <p>Écriture, analyse et capitalisation d'exigences systèmes pour Nexter. Architecture dans l'outil IBM DOORS, traçabilité documentaire, développement de scripts d'automatisation, modélisation orientée objet C++.</p>
+        <p data-fr="Écriture, analyse et capitalisation d'exigences systèmes pour Nexter. Architecture dans l'outil IBM DOORS, traçabilité documentaire, développement de scripts d'automatisation, modélisation orientée objet C++." data-en="Writing, analysis and capitalisation of system requirements for Nexter. Architecture in IBM DOORS, document traceability, automation script development, object-oriented C++ modelling.">Écriture, analyse et capitalisation d'exigences systèmes pour Nexter. Architecture dans l'outil IBM DOORS, traçabilité documentaire, développement de scripts d'automatisation, modélisation orientée objet C++.</p>
       </div>
       <div class="detail-tags">
-        <span class="detail-tag primary">Architecture Système</span>
+        <span class="detail-tag primary" data-fr="Architecture Système" data-en="System Architecture">Architecture Système</span>
         <span class="detail-tag">IBM DOORS</span>
         <span class="detail-tag">C++</span>
-        <span class="detail-tag">Analyse d'exigences</span>
+        <span class="detail-tag" data-fr="Analyse d'exigences" data-en="Requirements Analysis">Analyse d'exigences</span>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- SKILLS -->
 <section class="skills-section" id="skills">
-  <div class="section-label reveal">Expertise technique</div>
-  <h2 class="section-heading reveal">Compétences &<br><em>outils</em></h2>
-
+  <div class="section-label reveal" data-fr="Expertise technique" data-en="Technical expertise">Expertise technique</div>
+  <h2 class="section-heading reveal" data-fr="Compétences &<br><em>outils</em>" data-en="Skills &<br><em>tools</em>">Compétences &<br><em>outils</em></h2>
   <div class="skills-grid reveal">
     <div class="skill-group">
-      <div class="skill-group-title">Acquisition 3D</div>
+      <div class="skill-group-title" data-fr="Acquisition 3D" data-en="3D Acquisition">Acquisition 3D</div>
       <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">UAV LiDAR</span><span class="skill-pct">95</span></div><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div></div>
       <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">TLS (Leica, FARO)</span><span class="skill-pct">92</span></div><div class="skill-track"><div class="skill-fill" style="width:92%"></div></div></div>
       <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">MLS (Mobile Scanning)</span><span class="skill-pct">88</span></div><div class="skill-track"><div class="skill-fill" style="width:88%"></div></div></div>
-      <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">Photogrammétrie DSC/UAV</span><span class="skill-pct">95</span></div><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div></div>
-      <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">Lumière structurée</span><span class="skill-pct">80</span></div><div class="skill-track"><div class="skill-fill" style="width:80%"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name-txt" data-fr="Photogrammétrie DSC/UAV" data-en="Photogrammetry DSC/UAV">Photogrammétrie DSC/UAV</span><span class="skill-pct">95</span></div><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name-txt" data-fr="Lumière structurée" data-en="Structured Light">Lumière structurée</span><span class="skill-pct">80</span></div><div class="skill-track"><div class="skill-fill" style="width:80%"></div></div></div>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Traitement & Dev</div>
-      <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">Traitement nuages de points</span><span class="skill-pct">95</span></div><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div></div>
+      <div class="skill-group-title" data-fr="Traitement & Dev" data-en="Processing & Dev">Traitement & Dev</div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name-txt" data-fr="Traitement nuages de points" data-en="Point Cloud Processing">Traitement nuages de points</span><span class="skill-pct">95</span></div><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div></div>
       <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">Leica SDK / DWG auto</span><span class="skill-pct">85</span></div><div class="skill-track"><div class="skill-fill" style="width:85%"></div></div></div>
-      <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">Scripts / Automatisation</span><span class="skill-pct">88</span></div><div class="skill-track"><div class="skill-fill" style="width:88%"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name-txt" data-fr="Scripts / Automatisation" data-en="Scripts / Automation">Scripts / Automatisation</span><span class="skill-pct">88</span></div><div class="skill-track"><div class="skill-fill" style="width:88%"></div></div></div>
       <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">GNSS PPK/PPP</span><span class="skill-pct">85</span></div><div class="skill-track"><div class="skill-fill" style="width:85%"></div></div></div>
       <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">3D Mesh / Ortho-DEM</span><span class="skill-pct">90</span></div><div class="skill-track"><div class="skill-fill" style="width:90%"></div></div></div>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">R&D & Logiciels</div>
+      <div class="skill-group-title" data-fr="R&D & Logiciels" data-en="R&D & Software">R&D & Logiciels</div>
       <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">Hardware Prototyping</span><span class="skill-pct">85</span></div><div class="skill-track"><div class="skill-fill" style="width:85%"></div></div></div>
       <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">Blender / Unreal Engine 5</span><span class="skill-pct">72</span></div><div class="skill-track"><div class="skill-fill" style="width:72%"></div></div></div>
       <div class="skill-row"><div class="skill-top"><span class="skill-name-txt">Scantra</span><span class="skill-pct">80</span></div><div class="skill-track"><div class="skill-fill" style="width:80%"></div></div></div>
@@ -1596,60 +678,25 @@ footer a {
 
 <!-- PUBLICATIONS -->
 <section class="publications-section" id="publications">
-  <div class="section-label reveal">Recherche & Innovation</div>
-  <h2 class="section-heading reveal">Publications<br>& <em>Brevets</em></h2>
+  <div class="section-label reveal" data-fr="Recherche & Innovation" data-en="Research & Innovation">Recherche & Innovation</div>
+  <h2 class="section-heading reveal" data-fr="Publications<br>& <em>Brevets</em>" data-en="Publications<br>& <em>Patents</em>">Publications<br>& <em>Brevets</em></h2>
   <div class="pub-list reveal">
-    <div class="pub-item">
-      <div class="pub-num">01</div>
-      <div class="pub-title">Patent : 3D Accuracy Star + Catenary Lines</div>
-      <span class="pub-type gold">Brevet</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-num">02</div>
-      <div class="pub-title">Validation of LiDAR Survey Data by Comparison of Several Uncertainty Models</div>
-      <span class="pub-type">Publication</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-num">03</div>
-      <div class="pub-title">Comparison of UAV LiDAR Odometry of Rotating and Fixed Velodyne Platforms</div>
-      <span class="pub-type">Publication</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-num">04</div>
-      <div class="pub-title">Denoising of 3D Point Clouds</div>
-      <span class="pub-type">Publication</span>
-    </div>
-    <div class="pub-item">
-      <div class="pub-num">05</div>
-      <div class="pub-title">Tri-Rotors UAV Stabilization for Vertical Takeoff and Hovering</div>
-      <span class="pub-type">Publication</span>
-    </div>
+    <div class="pub-item"><div class="pub-num">01</div><div class="pub-title">Patent : 3D Accuracy Star + Catenary Lines</div><span class="pub-type gold" data-fr="Brevet" data-en="Patent">Brevet</span></div>
+    <div class="pub-item"><div class="pub-num">02</div><div class="pub-title">Validation of LiDAR Survey Data by Comparison of Several Uncertainty Models</div><span class="pub-type" data-fr="Publication" data-en="Publication">Publication</span></div>
+    <div class="pub-item"><div class="pub-num">03</div><div class="pub-title">Comparison of UAV LiDAR Odometry of Rotating and Fixed Velodyne Platforms</div><span class="pub-type" data-fr="Publication" data-en="Publication">Publication</span></div>
+    <div class="pub-item"><div class="pub-num">04</div><div class="pub-title">Denoising of 3D Point Clouds</div><span class="pub-type" data-fr="Publication" data-en="Publication">Publication</span></div>
+    <div class="pub-item"><div class="pub-num">05</div><div class="pub-title">Tri-Rotors UAV Stabilization for Vertical Takeoff and Hovering</div><span class="pub-type" data-fr="Publication" data-en="Publication">Publication</span></div>
   </div>
 </section>
 
 <!-- EDUCATION -->
 <section class="education-section" id="formation">
-  <div class="section-label reveal">Parcours académique</div>
-  <h2 class="section-heading reveal">Formation<br>& <em>Échanges internationaux</em></h2>
+  <div class="section-label reveal" data-fr="Parcours académique" data-en="Education">Parcours académique</div>
+  <h2 class="section-heading reveal" data-fr="Formation<br>& <em>Échanges internationaux</em>" data-en="Education<br>& <em>International exchanges</em>">Formation<br>& <em>Échanges internationaux</em></h2>
   <div class="edu-grid reveal">
-    <div class="edu-card">
-      <div class="edu-flag">🎓</div>
-      <div class="edu-school">ECE Paris</div>
-      <div class="edu-degree">Master of Engineering (MEng)<br>Electrical & Electronics Engineering</div>
-      <div class="edu-year">2008–2013</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-flag">🇺🇸</div>
-      <div class="edu-school">University of California, Irvine</div>
-      <div class="edu-degree">Exchange Program<br>Global Management & Manufacturing</div>
-      <div class="edu-year">2012</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-flag">🇨🇦</div>
-      <div class="edu-school">Concordia University</div>
-      <div class="edu-degree">Semester Exchange<br>Engineering & Computer Science</div>
-      <div class="edu-year">2011</div>
-    </div>
+    <div class="edu-card"><div class="edu-flag">🎓</div><div class="edu-school">ECE Paris</div><div class="edu-degree" data-fr="Master of Engineering (MEng)<br>Electrical & Electronics Engineering" data-en="Master of Engineering (MEng)<br>Electrical & Electronics Engineering">Master of Engineering (MEng)<br>Electrical & Electronics Engineering</div><div class="edu-year">2008–2013</div></div>
+    <div class="edu-card"><div class="edu-flag">🇺🇸</div><div class="edu-school">University of California, Irvine</div><div class="edu-degree" data-fr="Programme d'échange<br>Global Management & Manufacturing" data-en="Exchange Program<br>Global Management & Manufacturing">Programme d'échange<br>Global Management & Manufacturing</div><div class="edu-year">2012</div></div>
+    <div class="edu-card"><div class="edu-flag">🇨🇦</div><div class="edu-school">Concordia University</div><div class="edu-degree" data-fr="Semestre d'échange<br>Engineering & Computer Science" data-en="Semester Exchange<br>Engineering & Computer Science">Semestre d'échange<br>Engineering & Computer Science</div><div class="edu-year">2011</div></div>
   </div>
 </section>
 
@@ -1657,57 +704,57 @@ footer a {
 <section class="contact-section" id="contact">
   <div class="contact-left reveal">
     <div class="section-label">Contact</div>
-    <h2 class="section-heading">Travaillons<br><em>ensemble.</em></h2>
-    <p>
-      Disponible pour des échanges autour de projets en acquisition 3D, 
-      R&D géospatiale, automatisation de workflows ou prototypage hardware UAV / LiDAR.
-    </p>
-    <a href="https://www.linkedin.com/in/maximelafleuruav/" target="_blank" class="btn-main">Voir le profil LinkedIn →</a>
+    <h2 class="section-heading" data-fr="Travaillons<br><em>ensemble.</em>" data-en="Let's work<br><em>together.</em>">Travaillons<br><em>ensemble.</em></h2>
+    <p data-fr="Disponible pour des échanges autour de projets en acquisition 3D, R&D géospatiale, automatisation de workflows ou prototypage hardware UAV / LiDAR." data-en="Available for discussions about 3D acquisition projects, geospatial R&D, workflow automation or UAV / LiDAR hardware prototyping.">Disponible pour des échanges autour de projets en acquisition 3D, R&D géospatiale, automatisation de workflows ou prototypage hardware UAV / LiDAR.</p>
+    <a href="https://www.linkedin.com/in/maximelafleuruav/" target="_blank" class="btn-main" data-fr="Voir le profil LinkedIn →" data-en="View LinkedIn profile →">Voir le profil LinkedIn →</a>
   </div>
-
   <div class="contact-right reveal">
     <a href="https://www.linkedin.com/in/maximelafleuruav/" target="_blank" class="contact-item">
       <div class="contact-icon">in</div>
-      <div>
-        <div class="contact-info-type">LinkedIn</div>
-        <div class="contact-info-val">maximelafleuruav</div>
-      </div>
+     
+      <div><div class="contact-info-type">LinkedIn</div><div class="contact-info-val">maximelafleuruav</div></div>
       <div class="contact-arrow">→</div>
     </a>
     <a href="mailto:maxime.lafleur@outlook.fr" class="contact-item">
       <div class="contact-icon">✉</div>
-      <div>
-        <div class="contact-info-type">Email</div>
-        <div class="contact-info-val">maxime.lafleur@outlook.fr</div>
-      </div>
+      <div><div class="contact-info-type">Email</div><div class="contact-info-val">maxime.lafleur@outlook.fr</div></div>
       <div class="contact-arrow">→</div>
     </a>
     <a href="#" class="contact-item">
       <div class="contact-icon">📍</div>
-      <div>
-        <div class="contact-info-type">Localisation</div>
-        <div class="contact-info-val">Valence, Auvergne-Rhône-Alpes · France</div>
-      </div>
+      <div><div class="contact-info-type" data-fr="Localisation" data-en="Location">Localisation</div><div class="contact-info-val">Valence, Auvergne-Rhône-Alpes · France</div></div>
       <div class="contact-arrow">→</div>
     </a>
     <a href="#" class="contact-item">
       <div class="contact-icon">🌐</div>
-      <div>
-        <div class="contact-info-type">Langues</div>
-        <div class="contact-info-val">Français (natif) · English (Full Professional)</div>
-      </div>
+      <div><div class="contact-info-type" data-fr="Langues" data-en="Languages">Langues</div><div class="contact-info-val" data-fr="Français (natif) · English (Full Professional)" data-en="French (native) · English (Full Professional)">Français (natif) · English (Full Professional)</div></div>
       <div class="contact-arrow">→</div>
     </a>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Maxime Lafleur — Ingénieur 3D Patrimoine</p>
+  <p data-fr="© 2026 Maxime Lafleur — Ingénieur 3D Patrimoine" data-en="© 2026 Maxime Lafleur — 3D Heritage Engineer">© 2026 Maxime Lafleur — Ingénieur 3D Patrimoine</p>
   <a href="https://www.geokali.com" target="_blank">geokali.com →</a>
 </footer>
 
 <script>
-// ─── Exp tabs ───
+let currentLang = 'fr';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val) el.innerHTML = val;
+  });
+  document.title = lang === 'fr'
+    ? 'Maxime Lafleur — Ingénieur 3D Patrimoine'
+    : 'Maxime Lafleur — 3D Heritage Engineer';
+}
+
 function showExp(id, tabEl) {
   document.querySelectorAll('.exp-detail').forEach(d => d.classList.remove('active'));
   document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
@@ -1715,18 +762,11 @@ function showExp(id, tabEl) {
   tabEl.classList.add('active');
 }
 
-// ─── Scroll reveals ───
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-    }
-  });
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ─── Skill bars animate on scroll ───
 const skillObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -1736,7 +776,6 @@ const skillObserver = new IntersectionObserver(entries => {
     }
   });
 }, { threshold: 0.2 });
-
 document.querySelectorAll('.skills-grid').forEach(el => skillObserver.observe(el));
 </script>
 </body>
