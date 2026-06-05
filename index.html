@@ -209,7 +209,14 @@ nav {
 /* ── EDUCATION ── */
 .education-section { padding:60px 56px; background:var(--white); }
 .edu-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
-@media(max-width:900px) { .edu-grid { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:900px) {
+  .edu-grid { grid-template-columns:repeat(2,1fr); }
+  .edu-flag { font-size:20px; margin-bottom:12px; }
+  .edu-school { font-size:16px; }
+  .edu-degree { font-size:13px; }
+  .edu-year { font-size:22px; }
+  .edu-card { padding:14px 16px; }
+}
 .edu-card { background:var(--bg2); padding:20px 24px; border:1px solid var(--line); transition:all 0.3s; }
 .edu-card:hover { border-color:var(--blue); transform:translateY(-2px); }
 .edu-flag { font-size:28px; margin-bottom:20px; }
@@ -516,9 +523,9 @@ footer a { font-size:14px; color:var(--blue); text-decoration:none; letter-spaci
 .exp-reco-text.expanded { max-height:600px; }
 .exp-reco-toggle { background:none; border:none; color:var(--blue); font-family:'DM Sans',sans-serif; font-size:12px; cursor:pointer; padding:4px 0; text-decoration:underline; margin-top:4px; }
 
-.exp-images { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
-.exp-img-thumb { cursor:pointer; border-radius:2px; overflow:hidden; border:1px solid var(--line); flex-shrink:0; height:250px; width:auto; max-width:375px; display:inline-block; }
-.exp-img-thumb img { height:250px; width:auto; max-width:375px; display:block; object-fit:cover; filter:saturate(0.9); transition:filter 0.3s; }
+.exp-images { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; max-width:100%; overflow:hidden; }
+.exp-img-thumb { cursor:pointer; border-radius:2px; overflow:hidden; border:1px solid var(--line); flex-shrink:0; height:250px; width:auto; max-width:min(375px, 100%); display:inline-block; }
+.exp-img-thumb img { height:250px; width:auto; max-width:100%; display:block; object-fit:cover; filter:saturate(0.9); transition:filter 0.3s; }
 .exp-img-thumb:hover img { filter:saturate(1.1); }
 
 
@@ -582,7 +589,6 @@ footer a { font-size:14px; color:var(--blue); text-decoration:none; letter-spaci
 .heritage-card-sub { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--light); font-style:italic; letter-spacing:0.03em; }
 
 /* ── R&D PATRIMOINE ── */
-.rd-section { padding:50px 56px 100px; background:var(--bg); }
 .rd-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:0; }
 .rd-item { display:flex; gap:16px; align-items:flex-start; padding:20px 0; border-bottom:1px solid var(--line); }
 .rd-item:last-child { border-bottom:none; }
@@ -593,7 +599,6 @@ footer a { font-size:14px; color:var(--blue); text-decoration:none; letter-spaci
 @media(max-width:900px){
   .heritage-grid { grid-template-columns:1fr; }
   .rd-grid { grid-template-columns:1fr; }
-  .heritage-section, .rd-section { padding:60px 24px; }
 }
 
 .heritage-card-desc { font-family:'DM Sans',sans-serif; font-size:16px; color:var(--mid); line-height:1.6; margin:10px 0 16px; }
@@ -616,6 +621,7 @@ footer a { font-size:14px; color:var(--blue); text-decoration:none; letter-spaci
 .heritage-card-yt-play span { width:0; height:0; border-style:solid; border-width:8px 0 8px 16px; border-color:transparent transparent transparent #fff; margin-left:3px; }
 
 .rd-section { padding:40px 56px 60px; background:var(--bg2); }
+@media(max-width:900px){ .heritage-section, .rd-section { padding:60px 24px; } }
 .rd-grid-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:0; }
 .rd-grid-cards { align-items:start; }
 .rd-card { background:var(--white); border:1px solid var(--line); padding:28px 24px; border-radius:2px; transition:border-color 0.2s, box-shadow 0.2s; cursor:pointer; }
